@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>厦门地铁6号线 · 智能排班系统 · 使用简介</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:"Microsoft YaHei","PingFang SC",sans-serif; background:#f4f6fa; color:#2c3345; line-height:1.75; }
+  .watermark{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:9;
+    font-size:72px;font-weight:700;color:rgba(120,130,160,.10);transform:rotate(-16deg);white-space:nowrap;letter-spacing:12px;}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 24px 80px;}
+  header{background:linear-gradient(135deg,#1e3a8a,#3b5bdb);color:#fff;border-radius:14px;padding:34px 38px;margin-bottom:28px;}
+  header h1{font-size:26px;margin-bottom:8px;}
+  header p{opacity:.85;font-size:14px;}
+  h2{font-size:19px;margin:34px 0 14px;padding-left:12px;border-left:4px solid #3b5bdb;color:#1e3a8a;}
+  h3{font-size:15.5px;margin:18px 0 8px;color:#2c3345;}
+  p{margin:6px 0;}
+  .card{background:#fff;border-radius:12px;padding:20px 24px;box-shadow:0 2px 10px rgba(30,58,138,.06);margin-bottom:14px;}
+  ol.steps{counter-reset:s;list-style:none;margin:10px 0;}
+  ol.steps li{position:relative;padding:10px 14px 10px 52px;background:#fff;border-radius:10px;margin-bottom:10px;box-shadow:0 2px 8px rgba(30,58,138,.05);}
+  ol.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:12px;top:12px;width:26px;height:26px;border-radius:50%;
+    background:#3b5bdb;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:14px;}
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(30,58,138,.05);font-size:14px;margin:10px 0;}
+  th,td{padding:10px 14px;border-bottom:1px solid #eef0f5;text-align:left;vertical-align:top;}
+  th{background:#eef2ff;color:#1e3a8a;font-size:13.5px;}
+  tr:last-child td{border-bottom:none;}
+  .btn-tag{display:inline-block;background:#eef2ff;border:1px solid #c3cdff;color:#3b5bdb;border-radius:6px;padding:1px 10px;font-size:13px;font-weight:600;white-space:nowrap;}
+  .btn-tag.orange{background:#fff4e8;border-color:#ffd8a8;color:#d9730d;}
+  .tip{background:#fffbe8;border-left:4px solid #f5b400;border-radius:8px;padding:10px 16px;margin:12px 0;font-size:14px;}
+  .legend-dot{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px;}
+  ul{padding-left:22px;}
+  li{margin:4px 0;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:680px){.grid2{grid-template-columns:1fr;}}
+  footer{margin-top:40px;text-align:center;font-size:12.5px;color:#9aa3b5;}
+</style>
+</head>
+<body>
+<div class="watermark" aria-hidden="true">程有权　钱杨芯</div>
+<div class="wrap">
+
+<header>
+  <h1>🚇 厦门地铁6号线 · 智能排班系统</h1>
+  <p>使用简介 · 适用版本 v1.0 · 无需安装，浏览器打开即用</p>
+</header>
+
+<h2>一、系统是做什么的</h2>
+<div class="card">
+  <p>本系统以 <b>11/01–11/08 人工排班表</b>为基础数据，覆盖 <b>18 个车站（分区）、323 名员工</b>，实现：</p>
+  <ul>
+    <li><b>一键确认排班</b>——无人员变动时，沿用原排班结果，不需要重复排班；</li>
+    <li><b>备班 / 正岗自动区分</b>——顶班优先安排备班人员，备班不足时再从正岗中跨站抽调；</li>
+    <li><b>休假变动自动顶替</b>——登记休假后，系统按「同岗备班 → 同站正岗 → 跨站正岗」优先级自动匹配顶替人；</li>
+    <li><b>岗位互斥卡控</b>——值站、行值、站务员三类岗位互不混淆，顶替人必须具备对应岗位资质；</li>
+    <li><b>周期延续</b>——11/08 之后的班表可按 8 天周期自动延伸生成。</li>
+  </ul>
+</div>
+
+<h2>二、快速上手（三步完成一次排班）</h2>
+<ol class="steps">
+  <li><b>打开排班总表</b>：进入系统默认就是「排班总表」，确认基础班表已正常显示（可用左上角"车站/分组"筛选、搜索框查人）。</li>
+  <li><b>登记变动</b>：如有休假/外出，切到「✏ 变动登记」标签，选择人员与假期类型（年假/病假/事假/育儿假/婚假/产假/培训等），点「＋ 登记变动」。<b>无人员变动则跳过此步</b>。</li>
+  <li><b>生成确认</b>：点右上角橙色「<span class="btn-tag">⚡ 生成 / 确认排班</span>」按钮。系统自动完成顶替计算——无变动时即一键确认沿用，有变动时自动顶替并标注。</li>
+</ol>
+<div class="tip">💡 需要生成 11/08 之后的新周期？点顶部「<span class="btn-tag orange">📅 延续周期</span>」，见第四节。</div>
+
+<h2>三、功能页面说明</h2>
+
+<h3>1️⃣ 排班总表</h3>
+<div class="card">
+  <table>
+    <tr><th>工具</th><th>用途</th></tr>
+    <tr><td>车站/分组下拉框</td><td>只查看某个车站或分区的班表</td></tr>
+    <tr><td>「仅看本次变动」勾选</td><td>只显示本次发生顶替/休假的格子，方便快速核对改动</td></tr>
+    <tr><td>搜索框</td><td>按姓名或工号快速定位某个员工</td></tr>
+    <tr><td>图例</td><td><span class="legend-dot" style="background:#cfd8e6"></span>正常　<span class="legend-dot" style="background:#9aa3b5"></span>休息　<span class="legend-dot" style="background:#ffd666"></span>本人休假　<span class="legend-dot" style="background:#66d9a5"></span>顶替外出　<span class="legend-dot" style="background:#ff7875"></span>缺口（无人可顶，需人工处理）</td></tr>
+  </table>
+</div>
+
+<h3>2️⃣ ✏ 变动登记（自动顶替的核心）</h3>
+<div class="card">
+  <ul>
+    <li><b>① 登记休假 / 抽离</b>：选人员 → 选假期类型 → 「＋ 登记变动」。</li>
+    <li><b>② 自动顶替规则</b>：登记后点「生成 / 确认排班」，系统自动按优先级找人顶班——<b>同岗位备班 → 同车站正岗 → 跨车站正岗</b>；多名候选时随机均衡分配。顶替只会在<b>相同岗位类别</b>（值站 / 行值 / 站务员）之间进行，不具备资质的人不会被安排。</li>
+    <li>班表上会同时标注：谁休假、谁来顶替（如「KA1-1（鼎美，替王文）」写法）。</li>
+  </ul>
+</div>
+
+<h3>3️⃣ 📅 延续周期（生成 11/08 之后的班表）</h3>
+<div class="card">
+  <ul>
+    <li>点顶部橙色「<span class="btn-tag orange">📅 延续周期</span>」展开面板；</li>
+    <li>设置延续<b>几个周期</b>（每个周期 8 天，最多 12 个）；</li>
+    <li>可勾选「<b>复用原周期休假/顶替标注</b>」——把 11/01–11/08 的休假、顶替安排同样复制到新周期；</li>
+    <li>点「<b>延伸并生成</b>」即按 8 天循环规律生成新日期班表；点「<b>回到原周期</b>」随时撤销回到 11/01–11/08。</li>
+  </ul>
+</div>
+
+<h3>4️⃣ 👥 人员管理 与 ⚠ 告警中心</h3>
+<div class="card">
+  <ul>
+    <li><b>人员管理</b>：查看/筛选 323 名员工的车站、岗位类别（值站/行值/站务员）、备班或正岗属性及资质。</li>
+    <li><b>告警中心</b>：自动汇总当前班表的问题——如出现红色「缺口」格（无人可顶）、资质不匹配等，按告警数量显示角标，点击进入逐条处理。</li>
+  </ul>
+</div>
+
+<h2>四、导出</h2>
+<div class="card">
+  <p>点右上角「<span class="btn-tag">⬇ 导出</span>」可导出 CSV 文件，用 Excel 打开后可直接打印或存档，格式与总表一致。</p>
+</div>
+
+<h2>五、常见问题</h2>
+<table>
+  <tr><th>问题</th><th>处理</th></tr>
+  <tr><td>点「生成 / 确认排班」没反应？</td><td>先切到「告警中心」看是否有缺口告警；红色缺口格表示该时段没有符合资质的顶替人，需人工调配。</td></tr>
+  <tr><td>登记错了怎么撤销？</td><td>在变动登记列表删除对应记录后，重新点「生成 / 确认排班」即可恢复。</td></tr>
+  <tr><td>延续的新周期不想要了？</td><td>点延续面板里的「回到原周期」。</td></tr>
+  <tr><td>为什么某人没有被安排顶替？</td><td>顶替严格按岗位类别与备班优先级执行：岗位不匹配、当天自身有班或资质不符的都不会被选中。</td></tr>
+  <tr><td>数据会保存在哪？</td><td>全部保存在浏览器本地（localStorage），不经过任何服务器；换电脑或清理浏览器缓存需重新导入。</td></tr>
+</table>
+
+<footer>厦门地铁6号线智能排班系统 · 使用简介 v1.0</footer>
+</div>
+</body>
+</html>
