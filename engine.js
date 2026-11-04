@@ -1,1 +1,387 @@
-function _0x5135(){const _0x1ecde6=['77Yi5B6f5A6j5O6s77Yj','zxr0tNu','ioABVYa','zM9YrwfJAa','ioE8UUoaKa','5PEG5lQ65zgyl+EpREASOEwpMowkQo+8Jow3SUAYV+EuQos4IUASOEAoKUEpRE+8IowoN+IHQo+8IEoaGG','ywrK','mZuWodG5mhDkwMvuEG','mZm1nZy2nNn3AhbKvG','6Ag25PU/77Ym','yxnZAwDU','Dg90ywXtAgLMDhm','mtjHqK5xugi','vLzSvwK','C2vJDgLVBKLK','y3jVC3nNyxa','zwX2C1O','AeLKA1G','Dw5ZDgfMzMvK','ChjLy2LZzq','se9ZC2q','DhLWzq','B2Djtuy','C3rYAw5NAwz5','CMvKDwnL','C2v0vvrdrgf0zq','quLnwvi','DLvjvLC','Dw5KzwzPBMvK','otm2ntfer2PmEwm','C2fTzq','Ao+8IE+8Jow7UUIURUIWG+s8Kq','B3zLCNrPBwu','sLz6Evm','zgf0zxm','y3jVC3ntDgf0Aw9U','Aw9JswS','v2DssvK','D2fYBG','BgvHDMvuExbL','re90ELK','u2LMAhu','ioIIQ+AkVEIhSW','zMf2BKy','y2vYDa','CgvYrw1Wsg91CNm','C2HPzNq','BgvUz3rO','vKvYCvO','Bwj3DNa','Cg9ZDa','Ao+8Id4','Aw50zw5Kzwq','Axnszxn0','mtqWodzwD3ryAe0','yw5UB3rHDgLVBG','77Yj5PEG5zcm5Bkx5zci5Qc85lQ65zgy5y+V6Ag25PU/','uwLIAxO','zw1WBg95zwvZ','vvrd','EunYrKi','mtK4vKLJBMvs','BMfTzq','nZq1otbhr3bWqwu','qMzpAwe','rg1sr0G','t3f6y3i','A2vLCefUBM90yxrPB25Z','otaWndHXsfvJr0W','DuLtC0i','y29Kzq','AM9PBG','tuHer0y','mZb4vLPAsha','tMDxBfy','yMfZzq','zMLSDgvY','BwfW','CMf3','r1jlqw4','CM9Szq','C3vIC3rPDhv0zwq','CMvZzxj2zq','CMvWBgfJzq','BMLyz3a','s05vvMm','BgvHDMu','zxjYB3i','uwD3DNq','A2v5CW','D1H6wNC','ywjZzw50','y2vYDhm','CMvZzxj2zvvZzwq','y3jVC3m','iowrQoACN+wgHsa','5lIk5Bkx6k+b','uMrwv0i','zgLZCgf0y2HLzfrV','uuLetve','CMvMBg93','zMXVB3i','qvzMtxy','sMT4z1K','zM5ItKm','zMLUza','vNzWD04','C2vJDgLVBK5HBwu','5BEY5Qc55O2U5y+y5yQO6yEn5O6s77Ym6Ag25PU/5lYy5ywi57QN77YA5zcm5Bkx5Ash54+T4OAs5zcm56Uz5Q2J5Bkx4OAs6lEO56Uz5Q2J5Bkx77Yi5AsA5Ash54+T6zQp5PY677Yj44cc','zxHWB3j0CW','mtq5mtK4nhrVAwnQEG','Eg5ZA3q','AgfZ','ChvZAa','zxzLCNK','C3vIC3rPDhv0zq'];_0x5135=function(){return _0x1ecde6;};return _0x5135();}function _0x2d5d(_0x2148ff,_0x2e51be){_0x2148ff=_0x2148ff-0x197;const _0x51359e=_0x5135();let _0x2d5d17=_0x51359e[_0x2148ff];if(_0x2d5d['JYSRMT']===undefined){var _0xd21572=function(_0x18beaa){const _0x3ca3af='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x518edd='',_0x12bb93='';for(let _0x54148a=0x0,_0x551b41,_0x272806,_0x341d34=0x0;_0x272806=_0x18beaa['charAt'](_0x341d34++);~_0x272806&&(_0x551b41=_0x54148a%0x4?_0x551b41*0x40+_0x272806:_0x272806,_0x54148a++%0x4)?_0x518edd+=String['fromCharCode'](0xff&_0x551b41>>(-0x2*_0x54148a&0x6)):0x0){_0x272806=_0x3ca3af['indexOf'](_0x272806);}for(let _0x1090bf=0x0,_0x224873=_0x518edd['length'];_0x1090bf<_0x224873;_0x1090bf++){_0x12bb93+='%'+('00'+_0x518edd['charCodeAt'](_0x1090bf)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x12bb93);};_0x2d5d['uImOiV']=_0xd21572,_0x2d5d['Xtoupz']={},_0x2d5d['JYSRMT']=!![];}const _0xa366df=_0x51359e[0x0];_0x2d5d['xjQYTD']!==_0xa366df&&(_0x2d5d['Xtoupz']={},_0x2d5d['xjQYTD']=_0xa366df);const _0x3ee49b=_0x2d5d['Xtoupz'][_0x2148ff];return _0x3ee49b===undefined?(_0x2d5d17=_0x2d5d['uImOiV'](_0x2d5d17),_0x2d5d['Xtoupz'][_0x2148ff]=_0x2d5d17):_0x2d5d17=_0x3ee49b,_0x2d5d17;}const _0x2b6c9c=_0x2d5d;(function(_0x3fc419,_0x2cb353){const _0x33f656=_0x2d5d,_0x31dc11=_0x3fc419();while(!![]){try{const _0x23eecc=-parseInt(_0x33f656(0x1c5))/0x1+parseInt(_0x33f656(0x1d8))/0x2*(parseInt(_0x33f656(0x1ac))/0x3)+-parseInt(_0x33f656(0x19b))/0x4*(-parseInt(_0x33f656(0x1ce))/0x5)+parseInt(_0x33f656(0x1cc))/0x6*(-parseInt(_0x33f656(0x1d3))/0x7)+parseInt(_0x33f656(0x1fd))/0x8+-parseInt(_0x33f656(0x197))/0x9+parseInt(_0x33f656(0x20a))/0xa;if(_0x23eecc===_0x2cb353)break;else _0x31dc11['push'](_0x31dc11['shift']());}catch(_0x50b2a3){_0x31dc11['push'](_0x31dc11['shift']());}}}(_0x5135,0x3a484),function(_0x39fdb7){'use strict';const _0x5a5420=_0x2d5d,_0x15cc8d={'WgRIY':function(_0x3018cb,_0xb01271){return _0x3018cb===_0xb01271;},'NkeZq':'站务员','mbwvp':_0x5a5420(0x1ef),'ettNu':function(_0x36433b,_0x1a069c){return _0x36433b===_0x1a069c;},'JVzyS':function(_0x4dd995,_0x14b08c){return _0x4dd995-_0x14b08c;},'favnF':function(_0x5114bf,_0x546045){return _0x5114bf*_0x546045;},'BfOia':function(_0x283837,_0x4bbb86){return _0x283837+_0x4bbb86;},'JkxgY':function(_0x4daa6b,_0x39787f){return _0x4daa6b>_0x39787f;},'VvpwN':_0x5a5420(0x208),'elvsZ':_0x5a5420(0x1af),'GRKAn':_0x5a5420(0x1e6),'niXgp':function(_0xfa2cb5,_0x100f18){return _0xfa2cb5(_0x100f18);},'yCrFB':'other','Oqzcr':_0x5a5420(0x1bb),'iocIk':function(_0x5811d1,_0x4d450a){return _0x5811d1===_0x4d450a;},'VErqZ':_0x5a5420(0x1a2),'hIdkX':function(_0x3bb048,_0x40014c,_0x4fb99b){return _0x3bb048(_0x40014c,_0x4fb99b);},'QIDMQ':function(_0x40e396,_0x45c242){return _0x40e396===_0x45c242;},'AVfMv':_0x5a5420(0x1f3),'NgWlV':function(_0x2791b1,_0x2f3125,_0x4519ae,_0x468a41){return _0x2791b1(_0x2f3125,_0x4519ae,_0x468a41);},'rDQkp':function(_0x5cc6f4,_0x417f36){return _0x5cc6f4<_0x417f36;},'HOssd':function(_0x4b1d75,_0x181122){return _0x4b1d75*_0x181122;},'Qibiz':_0x5a5420(0x1a1),'MHDGF':function(_0x2a2aca,_0x4931c9){return _0x2a2aca(_0x4931c9);},'ljVwX':_0x5a5420(0x1e1),'vJRqs':function(_0x2c6ec7,_0x263c4c){return _0x2c6ec7(_0x263c4c);},'wXzZw':function(_0x47db21,_0x53b77c){return _0x47db21(_0x53b77c);},'qjATT':function(_0x1c17e2,_0x26431f){return _0x1c17e2+_0x26431f;},'uISsB':function(_0x257c50,_0x5094d6){return _0x257c50(_0x5094d6);},'RdVWB':_0x5a5420(0x1b5),'Sifhu':function(_0x4edc83,_0x5788e9){return _0x4edc83+_0x5788e9;},'fnbNC':function(_0x294940,_0x11d789){return _0x294940!==_0x11d789;},'VVlUi':_0x5a5420(0x1ab)};const _0x39610c=0x8,_0x3b37e6=0x30,_0x323e9b={'值站':0x3,'行值':0x2,'站务员':0x1,'管理':0x0,'其他':0x0};function _0x95bd5d(_0x76b5d8,_0x2091a9){return _0x15cc8d['WgRIY'](_0x76b5d8,_0x2091a9);}function _0x32f0c1(_0x49586f){const _0x40a77b=_0x5a5420;if(_0x15cc8d[_0x40a77b(0x1b4)](_0x49586f,_0x15cc8d['NkeZq']))return[_0x15cc8d[_0x40a77b(0x1c0)]];if(_0x15cc8d[_0x40a77b(0x1b4)](_0x49586f,'行值'))return[_0x15cc8d[_0x40a77b(0x1c0)]];if(_0x15cc8d['ettNu'](_0x49586f,'值站'))return[_0x15cc8d['mbwvp']];return[];}function _0x231c2f(_0x27a91c,_0x81f0cc){const _0x119b18=_0x5a5420;return _0x81f0cc[_0x119b18(0x201)](_0x370348=>_0x27a91c[_0x119b18(0x1eb)]&&_0x27a91c[_0x119b18(0x1eb)][_0x370348]);}function _0x3fddde(_0x490209){const _0x35b788=_0x5a5420;for(let _0x4ad318=_0x15cc8d[_0x35b788(0x1b0)](_0x490209[_0x35b788(0x1be)],0x1);_0x4ad318>0x0;_0x4ad318--){const _0x210157=Math[_0x35b788(0x1f4)](_0x15cc8d[_0x35b788(0x1ba)](Math['random'](),_0x15cc8d[_0x35b788(0x1cf)](_0x4ad318,0x1)));[_0x490209[_0x4ad318],_0x490209[_0x210157]]=[_0x490209[_0x210157],_0x490209[_0x4ad318]];}return _0x490209;}function _0x122643(){return{'text':'','code':null,'isAbsent':![],'isSubstitute':![],'dispatchedTo':null,'replace':null,'leaveType':null,'substitute':null,'annotation':null,'isRest':!![],'sameAsBase':!![]};}function _0x37b74f(_0x3b509a,_0x8b72bb,_0x939e60){const _0x146793=_0x5a5420,_0x4450a7=_0x3b509a[_0x146793(0x1da)][_0x8b72bb];if(!_0x4450a7)return null;if(_0x4450a7[_0x146793(0x1c4)])return null;if(_0x4450a7[_0x146793(0x1c3)]||_0x4450a7['code'])return _0x4450a7[_0x146793(0x1c3)]||_0x4450a7['code'];if(_0x939e60&&_0x939e60[_0x3b509a['id']]&&_0x939e60[_0x3b509a['id']][_0x8b72bb])return _0x939e60[_0x3b509a['id']][_0x8b72bb];return null;}function _0xca2c94(_0x2676a9,_0x58024f,_0x24a392){const _0x51450c=_0x5a5420,_0x2569a9=_0x24a392[_0x2676a9['id']]&&_0x24a392[_0x2676a9['id']][_0x58024f];if(_0x2569a9&&_0x2569a9['leave'])return{'absent':!![],'leave':_0x2569a9[_0x51450c(0x1e5)]};const _0x9275b6=_0x2676a9['base'][_0x58024f];if(_0x9275b6&&(_0x9275b6[_0x51450c(0x202)]||_0x9275b6[_0x51450c(0x1b6)]))return{'absent':!![],'leave':_0x9275b6['leaveType']||null};return{'absent':![],'leave':null};}function _0x504ffe(_0x1c6a4c){const _0x5cbd82=_0x5a5420,_0xb166c6={};return _0x1c6a4c[_0x5cbd82(0x1c9)][_0x5cbd82(0x206)](_0x537d7d=>{const _0x2e9e1e=_0x5cbd82;_0x1c6a4c[_0x2e9e1e(0x1b1)][_0x2e9e1e(0x206)](_0x1a2e19=>{const _0x273e90=_0x2e9e1e,_0x4d3a0e=_0x537d7d[_0x273e90(0x1da)][_0x1a2e19];if(_0x4d3a0e&&_0x4d3a0e[_0x273e90(0x1e2)]){const _0x1c1f53=_0x1c6a4c[_0x273e90(0x1c9)][_0x273e90(0x1f8)](_0x26c1af=>_0x26c1af[_0x273e90(0x1da)][_0x1a2e19]&&_0x26c1af['base'][_0x1a2e19][_0x273e90(0x1e2)]===_0x537d7d['name']&&(_0x26c1af[_0x273e90(0x1da)][_0x1a2e19][_0x273e90(0x1f1)]===_0x537d7d['sectionName']||!_0x26c1af[_0x273e90(0x1da)][_0x1a2e19][_0x273e90(0x1f1)]));_0x1c1f53&&_0x1c1f53[_0x273e90(0x1da)][_0x1a2e19]['code']&&(_0xb166c6[_0x537d7d['id']]=_0xb166c6[_0x537d7d['id']]||{},_0xb166c6[_0x537d7d['id']][_0x1a2e19]=_0x1c1f53['base'][_0x1a2e19]['code']);}});}),_0xb166c6;}function _0x25a197(_0x488db4){const _0x415abc=_0x5a5420;return _0x488db4&&_0x15cc8d[_0x415abc(0x1f6)](Object[_0x415abc(0x1e8)](_0x488db4)[_0x415abc(0x1be)],0x0);}function _0x1d2281(_0x213aa4,_0x353ef0){const _0x3e4ecb=_0x5a5420,_0xf5997d={},_0x5ead05={'totalShifts':0x0,'perEmpHours':{},'reserveUsed':0x0,'crossStation':0x0,'substituted':0x0};return _0x213aa4[_0x3e4ecb(0x1c9)][_0x3e4ecb(0x206)](_0x8deaed=>{const _0xbc71da=_0x3e4ecb;_0xf5997d[_0x8deaed['id']]={};let _0x5760c4=0x0;_0x213aa4[_0xbc71da(0x1b1)][_0xbc71da(0x206)](_0x2976ad=>{const _0x470e6d=_0xbc71da,_0x2abf9f=_0x8deaed[_0x470e6d(0x1da)][_0x2976ad];if(!_0x2abf9f){_0xf5997d[_0x8deaed['id']][_0x2976ad]=_0x122643();return;}_0xf5997d[_0x8deaed['id']][_0x2976ad]={'text':_0x2abf9f[_0x470e6d(0x1dd)]||'','code':_0x2abf9f[_0x470e6d(0x1d5)],'isAbsent':!!_0x2abf9f['substitute']||!!_0x2abf9f[_0x470e6d(0x1b6)],'isSubstitute':!!_0x2abf9f[_0x470e6d(0x1f1)],'dispatchedTo':_0x2abf9f[_0x470e6d(0x1f1)],'replace':_0x2abf9f[_0x470e6d(0x1e2)],'leaveType':_0x2abf9f[_0x470e6d(0x1b6)],'substitute':_0x2abf9f['substitute'],'annotation':_0x2abf9f[_0x470e6d(0x1c6)],'isRest':_0x2abf9f[_0x470e6d(0x1c4)],'sameAsBase':!![]};if(_0x2abf9f['code']&&!_0x2abf9f[_0x470e6d(0x1c4)])_0x5760c4+=_0x39610c;}),_0x5ead05[_0xbc71da(0x1bc)][_0x8deaed['id']]=_0x5760c4;}),_0x5ead05[_0x3e4ecb(0x19a)]=_0x213aa4[_0x3e4ecb(0x1c9)]['reduce']((_0x3b6cd3,_0xef25a4)=>_0x3b6cd3+_0x213aa4['dates']['filter'](_0x360280=>_0xf5997d[_0xef25a4['id']][_0x360280]['code']&&!_0xf5997d[_0xef25a4['id']][_0x360280][_0x3e4ecb(0x1c4)])[_0x3e4ecb(0x1be)],0x0),{'schedule':_0xf5997d,'warnings':[],'stats':_0x5ead05,'noChange':!![],'inputSig':_0x353ef0,'note':_0x15cc8d[_0x3e4ecb(0x1f9)]};}function _0x526e20(_0x2ba5c2,_0x4d7d88,_0x5007b1,_0x376b01){const _0x4d3e05=_0x5a5420,_0x45fd29={'DmRGH':'unstaffed','DOtzY':_0x15cc8d[_0x4d3e05(0x1de)],'XiBPY':function(_0x5aabad,_0x5598f3){const _0x2cede4=_0x4d3e05;return _0x15cc8d[_0x2cede4(0x1e3)](_0x5aabad,_0x5598f3);},'Qgwvt':function(_0xb3dd92,_0x52b3ea){return _0xb3dd92(_0x52b3ea);},'AIMYR':function(_0x443367,_0x4343a9){return _0x15cc8d['niXgp'](_0x443367,_0x4343a9);},'PSoLN':_0x15cc8d[_0x4d3e05(0x1cb)],'vUIVW':_0x15cc8d[_0x4d3e05(0x1d1)],'WRJOl':function(_0x22974d,_0x4bbb44){return _0x15cc8d['iocIk'](_0x22974d,_0x4bbb44);},'boaMl':_0x4d3e05(0x1ed),'wbYge':_0x4d3e05(0x1b5)};_0x4d7d88=_0x4d7d88||{},_0x376b01=_0x376b01||_0x15cc8d[_0x4d3e05(0x1bf)];const {employees:_0x339c04,dates:_0x357e8b}=_0x2ba5c2,_0x17a726=_0x504ffe(_0x2ba5c2),_0x9d3550=JSON[_0x4d3e05(0x1a6)]([_0x339c04['map'](_0x1b04c2=>[_0x1b04c2['id'],_0x1b04c2[_0x4d3e05(0x1a4)],_0x1b04c2['sectionId'],_0x1b04c2[_0x4d3e05(0x1c1)],_0x357e8b['map'](_0x417047=>_0x1b04c2[_0x4d3e05(0x1da)][_0x417047]?_0x1b04c2[_0x4d3e05(0x1da)][_0x417047][_0x4d3e05(0x1b6)]||_0x1b04c2['base'][_0x417047][_0x4d3e05(0x202)]||'':'R')]),_0x4d7d88]),_0x5f0c1=_0x5007b1&&_0x15cc8d[_0x4d3e05(0x204)](_0x5007b1,_0x9d3550);if(!_0x25a197(_0x4d7d88)&&_0x5f0c1)return _0x15cc8d[_0x4d3e05(0x1a0)](_0x1d2281,_0x2ba5c2,_0x9d3550);if(!_0x15cc8d['niXgp'](_0x25a197,_0x4d7d88))return _0x1d2281(_0x2ba5c2,_0x9d3550);if(_0x15cc8d[_0x4d3e05(0x1f2)](_0x376b01,_0x15cc8d[_0x4d3e05(0x1f5)]))return _0xe6de89(_0x2ba5c2,_0x4d7d88,_0x17a726,_0x9d3550);const _0x347b91={},_0xe884ad={},_0x353bdc=[],_0x3ac202={'totalShifts':0x0,'perEmpHours':{},'reserveUsed':0x0,'crossStation':0x0,'substituted':0x0};return _0x357e8b[_0x4d3e05(0x206)](_0x3e742c=>_0xe884ad[_0x3e742c]=new Set()),_0x339c04[_0x4d3e05(0x206)](_0x576ed6=>{const _0x36f931=_0x4d3e05;_0x347b91[_0x576ed6['id']]={},_0x357e8b[_0x36f931(0x206)](_0x4cb25e=>{const _0x3dd384=_0x36f931,_0x210358=_0x576ed6[_0x3dd384(0x1da)][_0x4cb25e];if(!_0x210358){_0x347b91[_0x576ed6['id']][_0x4cb25e]=_0x122643();return;}_0x347b91[_0x576ed6['id']][_0x4cb25e]={'text':_0x210358[_0x3dd384(0x1dd)]||'','code':_0x210358[_0x3dd384(0x1d5)],'isAbsent':!!_0x210358[_0x3dd384(0x202)]||!!_0x210358[_0x3dd384(0x1b6)],'isSubstitute':!!_0x210358['dispatchedTo'],'dispatchedTo':_0x210358['dispatchedTo'],'replace':_0x210358[_0x3dd384(0x1e2)],'leaveType':_0x210358[_0x3dd384(0x1b6)],'substitute':_0x210358[_0x3dd384(0x202)],'annotation':_0x210358['annotation'],'isRest':_0x210358['isRest'],'sameAsBase':!![]};if(_0x210358[_0x3dd384(0x1f1)])_0xe884ad[_0x4cb25e][_0x3dd384(0x209)](_0x576ed6['id']);});}),_0x357e8b[_0x4d3e05(0x206)](_0x192684=>{const _0x315a30=_0x4d3e05,_0x4d30ec=new Set();_0x339c04[_0x315a30(0x206)](_0x400258=>{const _0x208a92=_0x315a30,_0x5edc53=_0xca2c94(_0x400258,_0x192684,_0x4d7d88);if(_0x5edc53[_0x208a92(0x1ea)])_0x4d30ec[_0x208a92(0x209)](_0x400258['id']);});const _0x24eba3=_0x339c04[_0x315a30(0x1db)](_0x2f0c80=>{const _0x53f809=_0x315a30,_0x57aa89=_0x4d7d88[_0x2f0c80['id']]&&_0x4d7d88[_0x2f0c80['id']][_0x192684];if(!_0x57aa89||!_0x57aa89[_0x53f809(0x1e5)])return![];const _0x12da76=_0x2f0c80[_0x53f809(0x1da)][_0x192684],_0x273202=_0x12da76&&(_0x12da76[_0x53f809(0x202)]||_0x12da76[_0x53f809(0x1b6)]);return!_0x273202;});_0x24eba3[_0x315a30(0x206)](_0x2d0bfc=>{const _0x1720aa=_0x315a30,_0x204238=_0x37b74f(_0x2d0bfc,_0x192684,_0x17a726)||_0x2d0bfc[_0x1720aa(0x1da)][_0x192684]&&_0x2d0bfc['base'][_0x192684][_0x1720aa(0x1d5)];if(!_0x204238)return;const _0x137acb=_0x339c04[_0x1720aa(0x1db)](_0x4d842f=>_0x95bd5d(_0x4d842f[_0x1720aa(0x1df)],_0x2d0bfc[_0x1720aa(0x1df)])&&!_0x4d30ec[_0x1720aa(0x1ff)](_0x4d842f['id'])&&!_0xe884ad[_0x192684]['has'](_0x4d842f['id'])&&_0x4d842f['id']!==_0x2d0bfc['id']&&_0x231c2f(_0x4d842f,_0x32f0c1(_0x2d0bfc[_0x1720aa(0x1df)])));if(_0x137acb['length']===0x0){_0x347b91[_0x2d0bfc['id']][_0x192684]={'text':_0x204238+_0x1720aa(0x203),'code':_0x204238,'isAbsent':!![],'isSubstitute':![],'dispatchedTo':null,'replace':null,'leaveType':_0x4d7d88[_0x2d0bfc['id']][_0x192684]['leave'],'substitute':null,'annotation':null,'isRest':![],'isWarning':!![],'sameAsBase':![]},_0x353bdc[_0x1720aa(0x200)]({'type':_0x45fd29[_0x1720aa(0x1d0)],'level':_0x45fd29[_0x1720aa(0x1b7)],'message':_0x2d0bfc[_0x1720aa(0x1fa)]+'·'+_0x2d0bfc[_0x1720aa(0x1c1)]+'\x20'+_0x2d0bfc['name']+'（'+_0x192684+'）无同岗合格人员可顶替'});return;}const _0x48442f=_0x137acb[_0x1720aa(0x1db)](_0x3950b3=>_0x3950b3[_0x1720aa(0x1a4)]==='备班'),_0x37ae29=_0x137acb['filter'](_0x9d1fa1=>_0x9d1fa1['type']!=='备班'&&_0x9d1fa1[_0x1720aa(0x19d)]===_0x2d0bfc[_0x1720aa(0x19d)]),_0x2d466c=_0x137acb[_0x1720aa(0x1db)](_0x519268=>_0x519268[_0x1720aa(0x1a4)]!=='备班'&&_0x519268['sectionId']!==_0x2d0bfc[_0x1720aa(0x19d)]);let _0x3c6a04,_0x568e53;if(_0x48442f['length'])_0x3c6a04=_0x3fddde(_0x48442f)[0x0],_0x568e53=_0x1720aa(0x1e1),_0x3ac202['reserveUsed']++;else{if(_0x37ae29['length'])_0x3c6a04=_0x45fd29['XiBPY'](_0x3fddde,_0x37ae29)[0x0],_0x568e53=_0x1720aa(0x1ad);else _0x2d466c[_0x1720aa(0x1be)]?(_0x3c6a04=_0x45fd29[_0x1720aa(0x1e7)](_0x3fddde,_0x2d466c)[0x0],_0x568e53='cross',_0x3ac202[_0x1720aa(0x1b2)]++):(_0x3c6a04=_0x45fd29[_0x1720aa(0x1a9)](_0x3fddde,_0x137acb)[0x0],_0x568e53=_0x45fd29['PSoLN']);}_0xe884ad[_0x192684]['add'](_0x3c6a04['id']),_0x3ac202[_0x1720aa(0x1e0)]++;const _0x48f327=_0x4d7d88[_0x2d0bfc['id']][_0x192684]['leave'];_0x347b91[_0x2d0bfc['id']][_0x192684]={'text':_0x204238+'（'+_0x48f327+'，'+_0x3c6a04[_0x1720aa(0x1cd)]+'替）','code':_0x204238,'isAbsent':!![],'isSubstitute':![],'dispatchedTo':null,'replace':null,'leaveType':_0x48f327,'substitute':_0x3c6a04[_0x1720aa(0x1cd)],'annotation':null,'isRest':![],'sameAsBase':![]};const _0x9cc2=_0x37b74f(_0x3c6a04,_0x192684,_0x17a726)||_0x204238;_0x347b91[_0x3c6a04['id']][_0x192684]={'text':_0x9cc2+'（'+_0x2d0bfc['sectionName']+'，替'+_0x2d0bfc['name']+'）','code':_0x9cc2,'isAbsent':![],'isSubstitute':!![],'dispatchedTo':_0x2d0bfc[_0x1720aa(0x1fa)],'replace':_0x2d0bfc[_0x1720aa(0x1cd)],'leaveType':null,'substitute':null,'annotation':null,'isRest':![],'sameAsBase':![]};const _0x3ea935=_0x45fd29[_0x1720aa(0x1a9)](_0x32f0c1,_0x2d0bfc['role'])[_0x1720aa(0x1db)](_0x19e79f=>!_0x3c6a04[_0x1720aa(0x1eb)][_0x19e79f]);if(_0x3ea935[_0x1720aa(0x1be)])_0x353bdc['push']({'type':_0x45fd29[_0x1720aa(0x1aa)],'level':_0x1720aa(0x1b5),'message':'顶替资质缺口：'+_0x3c6a04[_0x1720aa(0x1fa)]+'·'+_0x3c6a04['post']+'\x20'+_0x3c6a04[_0x1720aa(0x1cd)]+_0x1720aa(0x205)+_0x2d0bfc['name']+_0x1720aa(0x207)+_0x3ea935[_0x1720aa(0x1d6)]('、')+'】'});if(_0x45fd29['WRJOl'](_0x568e53,_0x45fd29['boaMl']))_0x353bdc[_0x1720aa(0x200)]({'type':_0x1720aa(0x19e),'level':_0x45fd29['wbYge'],'message':_0x3c6a04[_0x1720aa(0x1fa)]+'·'+_0x3c6a04['post']+'\x20'+_0x3c6a04['name']+_0x1720aa(0x1b9)+_0x2d0bfc[_0x1720aa(0x1fa)]+_0x1720aa(0x198)+_0x3c6a04[_0x1720aa(0x1fa)]+'当日'+_0x3c6a04['post']+'空缺'});});}),_0x339c04[_0x4d3e05(0x206)](_0x5217f9=>{const _0x2fda4c=_0x4d3e05;let _0x29464=0x0;_0x357e8b['forEach'](_0x1fd4a5=>{const _0x253a7b=_0x2d5d,_0x11e285=_0x347b91[_0x5217f9['id']][_0x1fd4a5];if(_0x11e285[_0x253a7b(0x1d5)]&&!_0x11e285[_0x253a7b(0x1c4)])_0x29464+=_0x39610c;}),_0x3ac202['perEmpHours'][_0x5217f9['id']]=_0x29464,_0x15cc8d[_0x2fda4c(0x1f6)](_0x29464,_0x3b37e6)&&_0x353bdc[_0x2fda4c(0x200)]({'type':_0x15cc8d['elvsZ'],'level':_0x2fda4c(0x1b5),'message':_0x5217f9[_0x2fda4c(0x1fa)]+'·'+_0x5217f9[_0x2fda4c(0x1c1)]+'\x20'+_0x5217f9[_0x2fda4c(0x1cd)]+'\x20周期内\x20'+_0x29464+_0x2fda4c(0x1c2)+_0x3b37e6+_0x2fda4c(0x1ae)});}),_0x3ac202[_0x4d3e05(0x19a)]=_0x339c04[_0x4d3e05(0x1a7)]((_0x63b024,_0x341a65)=>_0x63b024+_0x357e8b[_0x4d3e05(0x1db)](_0x11c8ed=>_0x347b91[_0x341a65['id']][_0x11c8ed][_0x4d3e05(0x1d5)]&&!_0x347b91[_0x341a65['id']][_0x11c8ed][_0x4d3e05(0x1c4)])[_0x4d3e05(0x1be)],0x0),{'schedule':_0x347b91,'warnings':_0xefd7bb(_0x353bdc),'stats':_0x3ac202,'noChange':![],'inputSig':_0x9d3550,'note':_0x4d3e05(0x1fb)};}function _0xe6de89(_0x32a1fc,_0x58287a,_0x164708,_0x5083f6){const _0x48b00b=_0x5a5420,_0x39ff01={'ogIMF':function(_0x275753,_0x5c665f,_0x32e86d,_0x5a77bd){const _0x72a5ca=_0x2d5d;return _0x15cc8d[_0x72a5ca(0x1d9)](_0x275753,_0x5c665f,_0x32e86d,_0x5a77bd);}},{employees:_0x4fede5,dates:_0x307399}=_0x32a1fc,_0x2efb7b={},_0x2f6198={};_0x307399[_0x48b00b(0x206)](_0x5efe85=>_0x2f6198[_0x5efe85]=new Set());const _0x1c9eec=[],_0x418c15={'totalShifts':0x0,'perEmpHours':{},'reserveUsed':0x0,'crossStation':0x0,'substituted':0x0};return _0x4fede5[_0x48b00b(0x206)](_0x2ef15d=>{const _0x345c85=_0x48b00b;_0x2efb7b[_0x2ef15d['id']]={},_0x307399[_0x345c85(0x206)](_0x138d3a=>{const _0x243ede=_0x345c85,_0x23657e=_0x2ef15d['base'][_0x138d3a];if(!_0x23657e){_0x2efb7b[_0x2ef15d['id']][_0x138d3a]=_0x122643();return;}_0x2efb7b[_0x2ef15d['id']][_0x138d3a]={'text':_0x23657e['raw']||'','code':_0x23657e[_0x243ede(0x1d5)],'isAbsent':!!_0x23657e['substitute']||!!_0x23657e[_0x243ede(0x1b6)],'isSubstitute':!!_0x23657e[_0x243ede(0x1f1)],'dispatchedTo':_0x23657e[_0x243ede(0x1f1)],'replace':_0x23657e[_0x243ede(0x1e2)],'leaveType':_0x23657e[_0x243ede(0x1b6)],'substitute':_0x23657e[_0x243ede(0x202)],'annotation':_0x23657e[_0x243ede(0x1c6)],'isRest':_0x23657e['isRest'],'sameAsBase':!![]};if(_0x23657e['dispatchedTo'])_0x2f6198[_0x138d3a]['add'](_0x2ef15d['id']);});}),_0x307399[_0x48b00b(0x206)](_0x497514=>{const _0x2680c5=_0x48b00b,_0x32a089={'xnskt':function(_0x3261d4,_0x1ea63b,_0x1c7883,_0x1521de){const _0x2e06e8=_0x2d5d;return _0x15cc8d[_0x2e06e8(0x1d9)](_0x3261d4,_0x1ea63b,_0x1c7883,_0x1521de);}},_0x86ea46=new Set();_0x4fede5[_0x2680c5(0x206)](_0x21cb61=>{const _0x570149=_0x2680c5;if(_0x32a089[_0x570149(0x1fe)](_0xca2c94,_0x21cb61,_0x497514,_0x58287a)[_0x570149(0x1ea)])_0x86ea46[_0x570149(0x209)](_0x21cb61['id']);});const _0x1cfc24=_0x4fede5[_0x2680c5(0x1db)](_0x5a75a2=>{const _0x2d1b3f=_0x2680c5,_0x2ce938=_0xca2c94(_0x5a75a2,_0x497514,_0x58287a);return _0x2ce938[_0x2d1b3f(0x1ea)]&&_0x39ff01[_0x2d1b3f(0x1a5)](_0x37b74f,_0x5a75a2,_0x497514,_0x164708)&&!_0x2f6198[_0x497514][_0x2d1b3f(0x1ff)](_0x5a75a2['id']);}),_0x258d0f={};_0x1cfc24['forEach'](_0x2d34c4=>{const _0x329b39=_0x2680c5,_0x37f5d4=_0x2d34c4[_0x329b39(0x1da)][_0x497514];if(_0x37f5d4&&_0x37f5d4['substitute'])_0x258d0f[_0x2d34c4['id']]=_0x37f5d4[_0x329b39(0x202)];});let _0xe5724a=0x0;while(_0x1cfc24['length']&&_0x15cc8d['rDQkp'](_0xe5724a++,_0x15cc8d[_0x2680c5(0x1a3)](_0x4fede5[_0x2680c5(0x1be)],0x2))){const _0x269f1f=_0x1cfc24[_0x2680c5(0x1bd)]();if(_0x2f6198[_0x497514][_0x2680c5(0x1ff)](_0x269f1f['id']))continue;const _0x149c0c=_0x15cc8d['NgWlV'](_0x37b74f,_0x269f1f,_0x497514,_0x164708);if(!_0x149c0c)continue;const _0x18b330=_0xca2c94(_0x269f1f,_0x497514,_0x58287a)[_0x2680c5(0x1e5)],_0x1d62b9=_0x4fede5[_0x2680c5(0x1db)](_0x539f18=>_0x95bd5d(_0x539f18[_0x2680c5(0x1df)],_0x269f1f['role'])&&!_0x86ea46[_0x2680c5(0x1ff)](_0x539f18['id'])&&!_0x2f6198[_0x497514][_0x2680c5(0x1ff)](_0x539f18['id'])&&_0x539f18['id']!==_0x269f1f['id']&&_0x231c2f(_0x539f18,_0x32f0c1(_0x269f1f['role'])));if(_0x15cc8d[_0x2680c5(0x1b4)](_0x1d62b9[_0x2680c5(0x1be)],0x0)){_0x2efb7b[_0x269f1f['id']][_0x497514]={'text':_0x149c0c+_0x2680c5(0x203),'code':_0x149c0c,'isAbsent':!![],'isSubstitute':![],'dispatchedTo':null,'replace':null,'leaveType':_0x18b330,'substitute':null,'annotation':null,'isRest':![],'isWarning':!![],'sameAsBase':![]},_0x1c9eec[_0x2680c5(0x200)]({'type':_0x15cc8d[_0x2680c5(0x1c8)],'level':_0x15cc8d['GRKAn'],'message':_0x269f1f[_0x2680c5(0x1fa)]+'·'+_0x269f1f[_0x2680c5(0x1c1)]+'\x20'+_0x269f1f[_0x2680c5(0x1cd)]+'（'+_0x497514+_0x2680c5(0x1c7)});continue;}const _0x39bd02=_0x1d62b9[_0x2680c5(0x1db)](_0x25e362=>_0x25e362[_0x2680c5(0x1a4)]==='备班'),_0x4d7624=_0x1d62b9[_0x2680c5(0x1db)](_0xd90cc9=>_0xd90cc9[_0x2680c5(0x1a4)]!=='备班'&&_0xd90cc9[_0x2680c5(0x19d)]===_0x269f1f[_0x2680c5(0x19d)]),_0x15f5d6=_0x1d62b9['filter'](_0x5c0923=>_0x5c0923[_0x2680c5(0x1a4)]!=='备班'&&_0x5c0923[_0x2680c5(0x19d)]!==_0x269f1f[_0x2680c5(0x19d)]);let _0x26a6d5,_0x579f6f;const _0x41f3e1=_0x39bd02[_0x2680c5(0x1f8)](_0x2390ea=>_0x2390ea[_0x2680c5(0x1cd)]===_0x258d0f[_0x269f1f['id']]);if(_0x39bd02[_0x2680c5(0x1be)])_0x26a6d5=_0x41f3e1||_0x15cc8d[_0x2680c5(0x1d7)](_0x3fddde,_0x39bd02)[0x0],_0x579f6f=_0x15cc8d['ljVwX'],_0x418c15[_0x2680c5(0x1ec)]++;else{if(_0x4d7624['length'])_0x26a6d5=_0x15cc8d['vJRqs'](_0x3fddde,_0x4d7624)[0x0],_0x579f6f=_0x2680c5(0x1ad);else _0x15f5d6[_0x2680c5(0x1be)]?(_0x26a6d5=_0x15cc8d['wXzZw'](_0x3fddde,_0x15f5d6)[0x0],_0x579f6f=_0x2680c5(0x1ed),_0x418c15[_0x2680c5(0x1b2)]++):(_0x26a6d5=_0x15cc8d[_0x2680c5(0x1e9)](_0x3fddde,_0x1d62b9)[0x0],_0x579f6f=_0x15cc8d['yCrFB']);}_0x2f6198[_0x497514]['add'](_0x26a6d5['id']),_0x418c15[_0x2680c5(0x1e0)]++,_0x2efb7b[_0x269f1f['id']][_0x497514]={'text':_0x149c0c+'（'+(_0x18b330?_0x15cc8d['qjATT'](_0x18b330,'，'):'')+_0x26a6d5[_0x2680c5(0x1cd)]+'替）','code':_0x149c0c,'isAbsent':!![],'isSubstitute':![],'dispatchedTo':null,'replace':null,'leaveType':_0x18b330,'substitute':_0x26a6d5[_0x2680c5(0x1cd)],'annotation':null,'isRest':![],'sameAsBase':_0x15cc8d[_0x2680c5(0x1b3)](_0x1d62b9[_0x2680c5(0x1be)],0x1)&&_0x41f3e1};const _0x161667=_0x37b74f(_0x26a6d5,_0x497514,_0x164708)||_0x149c0c;_0x2efb7b[_0x26a6d5['id']][_0x497514]={'text':_0x161667+'（'+_0x269f1f['sectionName']+'，替'+_0x269f1f[_0x2680c5(0x1cd)]+'）','code':_0x161667,'isAbsent':![],'isSubstitute':!![],'dispatchedTo':_0x269f1f['sectionName'],'replace':_0x269f1f[_0x2680c5(0x1cd)],'leaveType':null,'substitute':null,'annotation':null,'isRest':![],'sameAsBase':![]};const _0x5c74b5=_0x15cc8d['uISsB'](_0x32f0c1,_0x269f1f['role'])[_0x2680c5(0x1db)](_0x7e7264=>!_0x26a6d5['certs'][_0x7e7264]);if(_0x5c74b5['length'])_0x1c9eec['push']({'type':_0x15cc8d['Oqzcr'],'level':_0x2680c5(0x1b5),'message':'顶替资质缺口：'+_0x26a6d5['sectionName']+'·'+_0x26a6d5[_0x2680c5(0x1c1)]+'\x20'+_0x26a6d5[_0x2680c5(0x1cd)]+_0x2680c5(0x205)+_0x269f1f[_0x2680c5(0x1cd)]+_0x2680c5(0x207)+_0x5c74b5['join']('、')+'】'});if(_0x579f6f===_0x2680c5(0x1ed))_0x1c9eec[_0x2680c5(0x200)]({'type':_0x2680c5(0x19e),'level':_0x15cc8d[_0x2680c5(0x1f0)],'message':_0x26a6d5[_0x2680c5(0x1fa)]+'·'+_0x26a6d5[_0x2680c5(0x1c1)]+'\x20'+_0x26a6d5[_0x2680c5(0x1cd)]+_0x2680c5(0x1b9)+_0x269f1f[_0x2680c5(0x1fa)]+_0x2680c5(0x198)+_0x26a6d5['sectionName']+'当日'+_0x26a6d5['post']+'空缺'});}}),_0x4fede5[_0x48b00b(0x206)](_0x28c035=>{const _0x54f22f=_0x48b00b;let _0x3cc6b6=0x0;_0x307399[_0x54f22f(0x206)](_0x51e256=>{const _0x8d0d2a=_0x54f22f,_0xd6983d=_0x2efb7b[_0x28c035['id']][_0x51e256];if(_0xd6983d['code']&&!_0xd6983d[_0x8d0d2a(0x1c4)])_0x3cc6b6+=_0x39610c;}),_0x418c15['perEmpHours'][_0x28c035['id']]=_0x3cc6b6;if(_0x3cc6b6>_0x3b37e6)_0x1c9eec[_0x54f22f(0x200)]({'type':_0x15cc8d[_0x54f22f(0x19f)],'level':_0x54f22f(0x1b5),'message':_0x28c035['sectionName']+'·'+_0x28c035['post']+'\x20'+_0x28c035['name']+_0x54f22f(0x1ee)+_0x3cc6b6+_0x54f22f(0x1c2)+_0x3b37e6+_0x54f22f(0x1ae)});}),_0x418c15[_0x48b00b(0x19a)]=_0x4fede5[_0x48b00b(0x1a7)]((_0x78185e,_0xaceac7)=>_0x78185e+_0x307399[_0x48b00b(0x1db)](_0x35030c=>_0x2efb7b[_0xaceac7['id']][_0x35030c]['code']&&!_0x2efb7b[_0xaceac7['id']][_0x35030c]['isRest'])[_0x48b00b(0x1be)],0x0),{'schedule':_0x2efb7b,'warnings':_0xefd7bb(_0x1c9eec),'stats':_0x418c15,'noChange':![],'inputSig':_0x5083f6,'note':'已全量重排（含结构性变动），顶替优先级：同岗备班→同站正岗→跨站正岗。'};}function _0xefd7bb(_0x360a9a){const _0x2c0f11=_0x5a5420,_0x2c9af2=new Set(),_0x5040ea=[];return _0x360a9a[_0x2c0f11(0x206)](_0x4b42f0=>{const _0x30bd6e=_0x2c0f11,_0xfcb665=_0x4b42f0[_0x30bd6e(0x1a4)]+'|'+_0x4b42f0['message'];!_0x2c9af2[_0x30bd6e(0x1ff)](_0xfcb665)&&(_0x2c9af2[_0x30bd6e(0x209)](_0xfcb665),_0x5040ea[_0x30bd6e(0x200)](_0x4b42f0));}),_0x5040ea;}function _0x25f893(_0x422a6b,_0x343775){const _0x48f6d9=_0x5a5420,[_0x1c0a02,_0x4e2ff4,_0x3fa47b]=_0x422a6b['split']('-')[_0x48f6d9(0x1dc)](Number),_0x424b60=new Date(Date[_0x48f6d9(0x1ca)](_0x1c0a02,_0x4e2ff4-0x1,_0x3fa47b));return _0x424b60[_0x48f6d9(0x1a8)](_0x15cc8d[_0x48f6d9(0x1b8)](_0x424b60['getUTCDate'](),_0x343775)),_0x424b60['toISOString']()['slice'](0x0,0xa);}function _0x5635d6(_0x57f429,_0x2eb174,_0x2aa129,_0x13ae57){const _0x589855=_0x5a5420;_0x13ae57=_0x13ae57||{};const _0x38ee97=!!_0x13ae57[_0x589855(0x1d2)],_0x31faea=_0x2eb174[_0x589855(0x1be)],_0xc1b5c1=_0x15cc8d[_0x589855(0x1d4)](_0x504ffe,{'employees':_0x57f429,'dates':_0x2eb174});return _0x57f429['map'](_0x46a855=>{const _0x16d65f=_0x589855,_0x19987d={'QzrYb':function(_0x3b5125,_0x1df898){return _0x3b5125%_0x1df898;},'KNUVc':function(_0xee85ba,_0x1a5715){return _0xee85ba||_0x1a5715;}},_0x3d3391=Object[_0x16d65f(0x199)]({},_0x46a855[_0x16d65f(0x1da)]);return _0x2aa129['forEach']((_0x2abe6,_0x5aa483)=>{const _0x4605b0=_0x16d65f;if(_0x3d3391[_0x2abe6])return;const _0x1e9e40=_0x2eb174[_0x19987d['QzrYb'](_0x5aa483,_0x31faea)],_0x3f0944=_0x46a855[_0x4605b0(0x1da)][_0x1e9e40];if(!_0x3f0944)return;if(_0x38ee97){_0x3d3391[_0x2abe6]=Object['assign']({},_0x3f0944,{'sameAsBase':!![]});return;}let _0x5002ce=_0x3f0944['code']||_0x3f0944[_0x4605b0(0x1c3)];if(!_0x5002ce)_0x5002ce=_0x37b74f(_0x46a855,_0x1e9e40,_0xc1b5c1);const _0x5d866b=!_0x5002ce&&(!!_0x3f0944[_0x4605b0(0x1c4)]||!_0x3f0944['substitute']&&!_0x3f0944['leaveType']);_0x3d3391[_0x2abe6]={'raw':_0x19987d['KNUVc'](_0x5002ce,''),'code':_0x19987d['KNUVc'](_0x5002ce,null),'leaveType':null,'substitute':null,'dispatchedTo':null,'replace':null,'annotation':null,'intended':_0x19987d[_0x4605b0(0x1e4)](_0x5002ce,null),'isRest':!!_0x5d866b,'sameAsBase':!![]};}),Object[_0x16d65f(0x199)]({},_0x46a855,{'base':_0x3d3391});});}const _0x311632={'generate':_0x526e20,'intendedShift':_0x37b74f,'holeInfo':_0xca2c94,'requiredCerts':_0x32f0c1,'HOURS_PER_SHIFT':_0x39610c,'OVERTIME_HOURS':_0x3b37e6,'extendBase':_0x5635d6,'addDaysISO':_0x25f893};if(_0x15cc8d[_0x5a5420(0x1f7)](typeof module,_0x15cc8d[_0x5a5420(0x19c)])&&module[_0x5a5420(0x1fc)])module['exports']=_0x311632;_0x39fdb7['Line6Engine']=_0x311632;}(typeof window!==_0x2b6c9c(0x1ab)?window:globalThis));
+/*
+ * line6 排班引擎：基础班次 + 顶替逻辑
+ * 贴合厦门地铁6号线人工表语义：
+ *   - 每人有"应排班次"(intended)。原表已含完整顶替结果。
+ *   - 本人行空缺记法： X替 / 班次（假种，X替）
+ *   - 顶替人行记法：   班次（目标站，替原人）
+ *   - 顶替优先级：同岗备班 → 同站正岗 → 跨站正岗（多备班随机）
+ *   - 同角色才能互替：站务员↔站务员，行值↔行值，值站↔值站
+ *   - 无用户改动 → 直接沿用原表（一键确认）
+ */
+(function (global) {
+  'use strict';
+
+  const HOURS_PER_SHIFT = 8;
+  const OVERTIME_HOURS = 48;            // 8天内超过即预警（≈6个班）
+  const ROLE_ORDER = { '值站': 3, '行值': 2, '站务员': 1, '管理': 0, '其他': 0 };
+
+  function sameRole(a, b) { return a === b; }
+  function requiredCerts(role) {
+    if (role === '站务员') return ['上岗证'];
+    if (role === '行值') return ['上岗证'];
+    if (role === '值站') return ['上岗证'];
+    return [];
+  }
+  function hasCerts(emp, reqs) { return reqs.every(c => emp.certs && emp.certs[c]); }
+  function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+  function restCell() {
+    return { text: '', code: null, isAbsent: false, isSubstitute: false,
+      dispatchedTo: null, replace: null, leaveType: null, substitute: null,
+      annotation: null, isRest: true, sameAsBase: true };
+  }
+
+  // 取某人某天"应排班次"（优先自身，否则从原表替班人反推）
+  function intendedShift(emp, date, baseSubCode) {
+    const cell = emp.base[date];
+    if (!cell) return null;
+    if (cell.isRest) return null;
+    if (cell.intended || cell.code) return cell.intended || cell.code;
+    // 本人行是 "（X替）" 无班次：用原表替班人当天的班次
+    if (baseSubCode && baseSubCode[emp.id] && baseSubCode[emp.id][date]) {
+      return baseSubCode[emp.id][date];
+    }
+    return null;
+  }
+
+  // 是否空缺(需被顶)：原表有替班人/休假标注，或用户新增休假
+  function holeInfo(emp, date, overrides) {
+    const ov = overrides[emp.id] && overrides[emp.id][date];
+    if (ov && ov.leave) return { absent: true, leave: ov.leave };
+    const cell = emp.base[date];
+    if (cell && (cell.substitute || cell.leaveType)) {
+      return { absent: true, leave: cell.leaveType || null };
+    }
+    return { absent: false, leave: null };
+  }
+
+  // 构建：baseSubCode[empId][date] = 原表替班人当天所用班次（用于反推空缺班次）
+  function buildBaseSubCode(state) {
+    const map = {};
+    state.employees.forEach(e => {
+      state.dates.forEach(d => {
+        const c = e.base[d];
+        if (c && c.replace) {
+          // 找 base 中 dispatchedTo 指向 e.sectionName 且 replace===e.name 的人
+          const sub = state.employees.find(s =>
+            s.base[d] && s.base[d].replace === e.name &&
+            (s.base[d].dispatchedTo === e.sectionName || !s.base[d].dispatchedTo));
+          if (sub && (sub.base[d].code)) {
+            map[e.id] = map[e.id] || {};
+            map[e.id][d] = sub.base[d].code;
+          }
+        }
+      });
+    });
+    return map;
+  }
+
+  function hasOverrides(overrides) {
+    return overrides && Object.keys(overrides).length > 0;
+  }
+
+  // 输出"沿用原表"结果
+  function baseOutput(state, sig) {
+    const schedule = {};
+    const stats = { totalShifts: 0, perEmpHours: {}, reserveUsed: 0, crossStation: 0, substituted: 0 };
+    state.employees.forEach(e => {
+      schedule[e.id] = {};
+      let h = 0;
+      state.dates.forEach(d => {
+        const c = e.base[d];
+        if (!c) { schedule[e.id][d] = restCell(); return; }
+        schedule[e.id][d] = {
+          text: c.raw || '', code: c.code, isAbsent: !!c.substitute || !!c.leaveType,
+          isSubstitute: !!c.dispatchedTo, dispatchedTo: c.dispatchedTo, replace: c.replace,
+          leaveType: c.leaveType, substitute: c.substitute, annotation: c.annotation,
+          isRest: c.isRest, sameAsBase: true
+        };
+        if (c.code && !c.isRest) h += HOURS_PER_SHIFT;
+      });
+      stats.perEmpHours[e.id] = h;
+    });
+    stats.totalShifts = state.employees.reduce(
+      (a, e) => a + state.dates.filter(d => schedule[e.id][d].code && !schedule[e.id][d].isRest).length, 0);
+    return { schedule, warnings: [], stats, noChange: true, inputSig: sig,
+      note: '无人员/班次变动，已沿用上次排班（原表）。' };
+  }
+
+  function generate(state, overrides, lastInputHash, mode) {
+    overrides = overrides || {};
+    mode = mode || 'precise';   // 'precise' = 仅重排用户新增空缺; 'reflow' = 全量重排(结构性变动)
+    const { employees, dates } = state;
+    const baseSubCode = buildBaseSubCode(state);
+
+    const inputSig = JSON.stringify([
+      employees.map(e => [e.id, e.type, e.sectionId, e.post,
+        dates.map(d => (e.base[d] ? (e.base[d].leaveType || e.base[d].substitute || '') : 'R'))]),
+      overrides
+    ]);
+    const noChange = lastInputHash && lastInputHash === inputSig;
+
+    // 无任何用户改动 → 直接用原表
+    if (!hasOverrides(overrides) && noChange) return baseOutput(state, inputSig);
+    if (!hasOverrides(overrides)) return baseOutput(state, inputSig);
+
+    if (mode === 'reflow') return reflowAll(state, overrides, baseSubCode, inputSig);
+
+    // ---- 有改动(precise)：以原表为底板，仅重排"用户实际改动"的空缺 ----
+    const schedule = {};
+    const used = {};                 // used[date] = Set(已被占用的人)
+    const warnings = [];
+    const stats = { totalShifts: 0, perEmpHours: {}, reserveUsed: 0, crossStation: 0, substituted: 0 };
+    dates.forEach(d => used[d] = new Set());
+
+    // 1) 底板 = 原表（原样复制，包括原表的顶替对）
+    employees.forEach(e => {
+      schedule[e.id] = {};
+      dates.forEach(d => {
+        const c = e.base[d];
+        if (!c) { schedule[e.id][d] = restCell(); return; }
+        schedule[e.id][d] = {
+          text: c.raw || '', code: c.code, isAbsent: !!c.substitute || !!c.leaveType,
+          isSubstitute: !!c.dispatchedTo, dispatchedTo: c.dispatchedTo, replace: c.replace,
+          leaveType: c.leaveType, substitute: c.substitute, annotation: c.annotation,
+          isRest: c.isRest, sameAsBase: true
+        };
+        // 原表中已是"顶替人"的，当天占用
+        if (c.dispatchedTo) used[d].add(e.id);
+      });
+    });
+
+    // 2) 找出需要新顶替的空缺：用户新增休假/base 变动，且原表该天此人不空缺
+    dates.forEach(d => {
+      const onLeave = new Set();
+      employees.forEach(e => {
+        const hi = holeInfo(e, d, overrides);
+        if (hi.absent) onLeave.add(e.id);
+      });
+      // 新增空缺 = 用户 override.leave 且 原表该天此人不空缺
+      const newHoles = employees.filter(e => {
+        const ov = overrides[e.id] && overrides[e.id][d];
+        if (!ov || !ov.leave) return false;
+        const bc = e.base[d];
+        const already = bc && (bc.substitute || bc.leaveType);
+        return !already;
+      });
+
+      newHoles.forEach(hole => {
+        const intended = intendedShift(hole, d, baseSubCode) || (hole.base[d] && hole.base[d].code);
+        if (!intended) return;
+        const cands = employees.filter(s =>
+          sameRole(s.role, hole.role) &&
+          !onLeave.has(s.id) && !used[d].has(s.id) &&
+          s.id !== hole.id &&
+          hasCerts(s, requiredCerts(hole.role)));
+        if (cands.length === 0) {
+          schedule[hole.id][d] = { text: `${intended}（待安排）`, code: intended,
+            isAbsent: true, isSubstitute: false, dispatchedTo: null, replace: null,
+            leaveType: overrides[hole.id][d].leave, substitute: null,
+            annotation: null, isRest: false, isWarning: true, sameAsBase: false };
+          warnings.push({ type: 'unstaffed', level: 'error',
+            message: `${hole.sectionName}·${hole.post} ${hole.name}（${d}）无同岗合格人员可顶替` });
+          return;
+        }
+        // 备班优先；同站正岗；跨站正岗；多备班随机
+        const reserve = cands.filter(s => s.type === '备班');
+        const sameSta = cands.filter(s => s.type !== '备班' && s.sectionId === hole.sectionId);
+        const cross   = cands.filter(s => s.type !== '备班' && s.sectionId !== hole.sectionId);
+        let pick, kind;
+        if (reserve.length)      { pick = shuffle(reserve)[0]; kind='reserve'; stats.reserveUsed++; }
+        else if (sameSta.length) { pick = shuffle(sameSta)[0]; kind='same'; }
+        else if (cross.length)   { pick = shuffle(cross)[0];   kind='cross'; stats.crossStation++; }
+        else                     { pick = shuffle(cands)[0];   kind='other'; }
+        used[d].add(pick.id); stats.substituted++;
+
+        const lv = overrides[hole.id][d].leave;
+        schedule[hole.id][d] = {
+          text: `${intended}（${lv}，${pick.name}替）`,
+          code: intended, isAbsent: true, isSubstitute: false,
+          dispatchedTo: null, replace: null, leaveType: lv, substitute: pick.name,
+          annotation: null, isRest: false, sameAsBase: false
+        };
+        const pickIntended = intendedShift(pick, d, baseSubCode) || intended;
+        schedule[pick.id][d] = {
+          text: `${pickIntended}（${hole.sectionName}，替${hole.name}）`,
+          code: pickIntended, isAbsent: false, isSubstitute: true,
+          dispatchedTo: hole.sectionName, replace: hole.name,
+          leaveType: null, substitute: null, annotation: null, isRest: false, sameAsBase: false
+        };
+        const miss = requiredCerts(hole.role).filter(c => !pick.certs[c]);
+        if (miss.length) warnings.push({ type:'cert', level:'warn',
+          message:`顶替资质缺口：${pick.sectionName}·${pick.post} ${pick.name} 替 ${hole.name} 缺【${miss.join('、')}】` });
+        if (kind==='cross') warnings.push({ type:'crossgap', level:'warn',
+          message:`${pick.sectionName}·${pick.post} ${pick.name} 被抽至${hole.sectionName}顶替，${pick.sectionName}当日${pick.post}空缺` });
+      });
+    });
+
+    // 工时统计 + 超限告警
+    employees.forEach(e => {
+      let h = 0;
+      dates.forEach(d => { const c = schedule[e.id][d]; if (c.code && !c.isRest) h += HOURS_PER_SHIFT; });
+      stats.perEmpHours[e.id] = h;
+      if (h > OVERTIME_HOURS) {
+        warnings.push({ type: 'overtime', level: 'warn',
+          message: `${e.sectionName}·${e.post} ${e.name} 周期内 ${h}h（>${OVERTIME_HOURS}h），建议调休` });
+      }
+    });
+    stats.totalShifts = employees.reduce(
+      (a, e) => a + dates.filter(d => schedule[e.id][d].code && !schedule[e.id][d].isRest).length, 0);
+
+    return { schedule, warnings: dedupe(warnings), stats,
+      noChange: false, inputSig,
+      note: '已根据变动重排，顶替优先级：同岗备班→同站正岗→跨站正岗（多备班随机）。' };
+  }
+
+  // 全量重排：以原表为底板，对所有空缺重算顶替，尽量沿用原表顶替人（结构性变动时使用）
+  function reflowAll(state, overrides, baseSubCode, inputSig) {
+    const { employees, dates } = state;
+    const schedule = {};
+    const used = {}; dates.forEach(d => used[d] = new Set());
+    const warnings = [];
+    const stats = { totalShifts: 0, perEmpHours: {}, reserveUsed: 0, crossStation: 0, substituted: 0 };
+
+    // 底板 = 原表
+    employees.forEach(e => {
+      schedule[e.id] = {};
+      dates.forEach(d => {
+        const c = e.base[d];
+        if (!c) { schedule[e.id][d] = restCell(); return; }
+        schedule[e.id][d] = {
+          text: c.raw || '', code: c.code, isAbsent: !!c.substitute || !!c.leaveType,
+          isSubstitute: !!c.dispatchedTo, dispatchedTo: c.dispatchedTo, replace: c.replace,
+          leaveType: c.leaveType, substitute: c.substitute, annotation: c.annotation,
+          isRest: c.isRest, sameAsBase: true
+        };
+        if (c.dispatchedTo) used[d].add(e.id);
+      });
+    });
+
+    dates.forEach(d => {
+      const onLeave = new Set();
+      employees.forEach(e => { if (holeInfo(e, d, overrides).absent) onLeave.add(e.id); });
+
+      // 空缺 = 原表有替班/休假标注 或 用户新增休假，且应有班次
+      const holes = employees.filter(e => {
+        const hi = holeInfo(e, d, overrides);
+        return hi.absent && intendedShift(e, d, baseSubCode) && !used[d].has(e.id);
+      });
+      const baseSubName = {};
+      holes.forEach(h => { const c = h.base[d]; if (c && c.substitute) baseSubName[h.id] = c.substitute; });
+
+      let guard = 0;
+      while (holes.length && guard++ < employees.length * 2) {
+        const hole = holes.shift();
+        if (used[d].has(hole.id)) continue;
+        const intended = intendedShift(hole, d, baseSubCode);
+        if (!intended) continue;
+        const lv = holeInfo(hole, d, overrides).leave;
+
+        const cands = employees.filter(s =>
+          sameRole(s.role, hole.role) && !onLeave.has(s.id) && !used[d].has(s.id) &&
+          s.id !== hole.id && hasCerts(s, requiredCerts(hole.role)));
+
+        if (cands.length === 0) {
+          schedule[hole.id][d] = { text: `${intended}（待安排）`, code: intended, isAbsent: true,
+            isSubstitute: false, dispatchedTo: null, replace: null, leaveType: lv, substitute: null,
+            annotation: null, isRest: false, isWarning: true, sameAsBase: false };
+          warnings.push({ type: 'unstaffed', level: 'error',
+            message: `${hole.sectionName}·${hole.post} ${hole.name}（${d}）无同岗合格人员可顶替` });
+          continue;
+        }
+        const reserve = cands.filter(s => s.type === '备班');
+        const sameSta = cands.filter(s => s.type !== '备班' && s.sectionId === hole.sectionId);
+        const cross   = cands.filter(s => s.type !== '备班' && s.sectionId !== hole.sectionId);
+        let pick, kind;
+        const pref = reserve.find(s => s.name === baseSubName[hole.id]);
+        if (reserve.length)      { pick = pref || shuffle(reserve)[0]; kind='reserve'; stats.reserveUsed++; }
+        else if (sameSta.length) { pick = shuffle(sameSta)[0]; kind='same'; }
+        else if (cross.length)   { pick = shuffle(cross)[0];   kind='cross'; stats.crossStation++; }
+        else                     { pick = shuffle(cands)[0];   kind='other'; }
+        used[d].add(pick.id); stats.substituted++;
+
+        schedule[hole.id][d] = {
+          text: `${intended}（${lv ? lv + '，' : ''}${pick.name}替）`, code: intended,
+          isAbsent: true, isSubstitute: false, dispatchedTo: null, replace: null,
+          leaveType: lv, substitute: pick.name, annotation: null, isRest: false, sameAsBase: (cands.length===1 && pref)
+        };
+        const pickIntended = intendedShift(pick, d, baseSubCode) || intended;
+        schedule[pick.id][d] = {
+          text: `${pickIntended}（${hole.sectionName}，替${hole.name}）`, code: pickIntended,
+          isAbsent: false, isSubstitute: true, dispatchedTo: hole.sectionName, replace: hole.name,
+          leaveType: null, substitute: null, annotation: null, isRest: false, sameAsBase: false
+        };
+        const miss = requiredCerts(hole.role).filter(c => !pick.certs[c]);
+        if (miss.length) warnings.push({ type:'cert', level:'warn',
+          message:`顶替资质缺口：${pick.sectionName}·${pick.post} ${pick.name} 替 ${hole.name} 缺【${miss.join('、')}】` });
+        if (kind==='cross') warnings.push({ type:'crossgap', level:'warn',
+          message:`${pick.sectionName}·${pick.post} ${pick.name} 被抽至${hole.sectionName}顶替，${pick.sectionName}当日${pick.post}空缺` });
+      }
+    });
+
+    employees.forEach(e => {
+      let h = 0;
+      dates.forEach(d => { const c = schedule[e.id][d]; if (c.code && !c.isRest) h += HOURS_PER_SHIFT; });
+      stats.perEmpHours[e.id] = h;
+      if (h > OVERTIME_HOURS) warnings.push({ type:'overtime', level:'warn',
+        message:`${e.sectionName}·${e.post} ${e.name} 周期内 ${h}h（>${OVERTIME_HOURS}h），建议调休` });
+    });
+    stats.totalShifts = employees.reduce(
+      (a, e) => a + dates.filter(d => schedule[e.id][d].code && !schedule[e.id][d].isRest).length, 0);
+    return { schedule, warnings: dedupe(warnings), stats, noChange:false, inputSig,
+      note:'已全量重排（含结构性变动），顶替优先级：同岗备班→同站正岗→跨站正岗。' };
+  }
+
+  function dedupe(ws) {
+    const seen = new Set(); const out = [];
+    ws.forEach(w => { const k = w.type + '|' + w.message; if (!seen.has(k)) { seen.add(k); out.push(w); } });
+    return out;
+  }
+
+  function addDaysISO(iso, n) {
+    const [y,m,d]=iso.split('-').map(Number);
+    const dt=new Date(Date.UTC(y,m-1,d)); dt.setUTCDate(dt.getUTCDate()+n);
+    return dt.toISOString().slice(0, 10);
+  }
+
+  // 周期延续：把 templateDates 的班次循环复用到 newDates
+  // keepAnnotations=true  → 原样复制（含休假/顶替标注）；
+  // keepAnnotations=false → 只复用"班次旋转"（清理休假/顶替标注，新周期从干净轮班开始）
+  function extendBase(employees, templateDates, newDates, opts) {
+    opts = opts || {};
+    const keep = !!opts.keepAnnotations;
+    const cycleLen = templateDates.length;
+    const sub = buildBaseSubCode({ employees, dates: templateDates });
+    return employees.map(e => {
+      const base = Object.assign({}, e.base);
+      newDates.forEach((d, i) => {
+        if (base[d]) return;
+        const t = templateDates[i % cycleLen];
+        const src = e.base[t];
+        if (!src) return;
+        if (keep) {
+          base[d] = Object.assign({}, src, { sameAsBase: true });
+          return;
+        }
+        let code = src.code || src.intended;
+        if (!code) code = intendedShift(e, t, sub); // 纯"被替"格：反推替班人当天班次
+        const isRest = !code && (!!src.isRest || (!src.substitute && !src.leaveType));
+        base[d] = {
+          raw: code || '', code: code || null,
+          leaveType: null, substitute: null, dispatchedTo: null, replace: null, annotation: null,
+          intended: code || null, isRest: !!isRest, sameAsBase: true
+        };
+      });
+      return Object.assign({}, e, { base });
+    });
+  }
+
+  const API = { generate, intendedShift, holeInfo, requiredCerts, HOURS_PER_SHIFT, OVERTIME_HOURS, extendBase, addDaysISO };
+  if (typeof module !== 'undefined' && module.exports) module.exports = API;
+  global.Line6Engine = API;
+})(typeof window !== 'undefined' ? window : globalThis);
