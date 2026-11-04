@@ -1,3 +1,7 @@
 # 大体积中间产物（线上用 seedc.js，无需提交原始大文件）
 seed.js
 seed.json
+
+# 本地备份与验证脚本（不上传）
+_src/
+_verify.js
