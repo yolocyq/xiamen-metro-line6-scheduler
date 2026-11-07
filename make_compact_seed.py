@@ -20,6 +20,8 @@ assert seq_ok, f"id 不连续，需保留: {ids[:5]}..."
 posts = sorted({e['post'] for e in d['employees']})
 roles = sorted({e['role'] for e in d['employees']})
 types = sorted({e['type'] for e in d['employees']})
+modes = sorted({e.get('mode', '') for e in d['employees']})
+grps  = sorted({e.get('group', '') for e in d['employees']})
 
 def compact_cell(c):
     if c.get('isRest'):
@@ -47,12 +49,14 @@ for e in d['employees']:
         e['workno'] or '',                          # 5 工号
         ''.join('1' if e['certs'].get(ct) else '0' for ct in cert_types),  # 6 证书位串
         [compact_cell(e['base'][dt]) for dt in dates],                     # 7 每日
+        modes.index(e.get('mode', '')),             # 8 倒班方式(四班倒/三班倒/空)
+        grps.index(e.get('group', '')),             # 9 班组(一~四班组/空)
     ])
 
 sections = [[s['id'], s['name'], s['kind']] for s in d['sections']]
 compact = {
     'm': {'dates': dates, 'certTypes': cert_types, 'shiftCodes': shift_codes},
-    's': sections, 'd': {'post': posts, 'role': roles, 'type': types}, 'e': emps,
+    's': sections, 'd': {'post': posts, 'role': roles, 'type': types, 'mode': modes, 'grp': grps}, 'e': emps,
 }
 raw = json.dumps(compact, ensure_ascii=False, separators=(',', ':')).encode('utf-8')
 b64 = base64.b64encode(zlib.compress(raw, 9)).decode('ascii')
@@ -82,7 +86,8 @@ seedc = '''/* 6号线排班数据（紧凑压缩版，由 make_compact_seed.py �
       ct.forEach(function (t, k) { certs[t] = a[6].charAt(k) === '1'; });
       return { id: 'e' + (i + 1), sectionId: j.s[a[1]][0], sectionName: j.s[a[1]][1],
         name: a[0], post: j.d.post[a[2]], role: j.d.role[a[3]], type: j.d.type[a[4]],
-        workno: a[5], certs: certs, base: b };
+        workno: a[5], certs: certs, base: b,
+        mode: j.d.mode[a[8]], group: j.d.grp[a[9]] };
     });
     return { meta: j.m, sections: secs, employees: emps };
   }

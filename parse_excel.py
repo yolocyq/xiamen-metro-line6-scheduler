@@ -4,7 +4,7 @@ import openpyxl, re, json, datetime
 from collections import Counter, defaultdict
 
 PATH = r"C:/Users/86152/Desktop/新建 XLSX 工作表.xlsx"
-OUT   = r"C:/Users/86152/WorkBuddy/2026-11-04-15-16-54/line6-scheduler/seed.json"
+OUT   = r"C:/Users/86152/WorkBuddy/2026-11-04-15-16-54/metro6-schedule/seed.json"
 
 KNOWN_SHIFTS = {"R1","KA1-1","KB1","KA2-1","KA7-1","KB2-1"}
 CERT_COLS = [("上岗证","上岗证"),("国考消防证","消防证"),("电梯证","电梯证"),("施工负责人证","施工负责人证")]
@@ -79,6 +79,7 @@ def parse_cell(s):
 sections=[]   # {id,name,kind}
 emp_rows=[]   # 中间行
 sec_id_map={}
+grp_state={}  # sid -> (当前班组, 倒班方式)，跨行向下继承
 for i,hr0 in enumerate(header_rows):
     hr1=header_rows[i+1] if i+1<len(header_rows) else ws.max_row+1
     # 判断分区类型：看该区前几人的岗位
@@ -117,6 +118,20 @@ for sid,secname,r in emp_rows:
         certs[key]= (str(v).strip()=='是') if v is not None else False
     role=role_of(post)
     is_reserve = (secname=='备班')
+    # ---- 班组/倒班方式（C列标记，向下继承）----
+    # 一/二/三/四班组 → 四班倒+班组名；三班倒 → 三班倒无班组；其余继承上一行
+    GROUP_RE = re.compile(r'^[一二三四]班组$')
+    if secname=='备班':
+        cur_group, cur_mode = '', ''
+    else:
+        cur_group, cur_mode = grp_state.get(sid, ('', ''))
+        cv = ws.cell(r,3).value
+        cs = ('' if cv is None else str(cv).strip())
+        if GROUP_RE.match(cs):
+            cur_group, cur_mode = cs, '四班倒'
+        elif cs == '三班倒':
+            cur_group, cur_mode = '', '三班倒'
+        grp_state[sid] = (cur_group, cur_mode)
     base={}
     weekday_shift=defaultdict(Counter)  # 仅用于推断应排班次
     for (c,ds,wd) in date_cols:
@@ -157,6 +172,8 @@ for sid,secname,r in emp_rows:
         'role': role,
         'workno': ('' if workno is None else str(workno)),
         'type': '备班' if is_reserve else '普通',
+        'group': cur_group,
+        'mode': cur_mode,
         'certs': certs,
         'base': base,
     })

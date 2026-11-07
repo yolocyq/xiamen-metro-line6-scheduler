@@ -181,8 +181,9 @@
         `</tr></thead><tbody>`+
         rows.map(e=>{
           const rc=roleClass(e.role);
-          // 意见6：班组色标；意见11：孕期/哺乳期标记
-          const gTag=e.group?`<span class="gname" style="background:${groupColor(e.group)}">${e.group}</span>`:'';
+          // 班组色标（四班倒）；三班倒无班组显灰色标签；备班/管理不标
+          const gTag=e.group?`<span class="gname" style="background:${groupColor(e.group)}">${e.group}</span>`
+                    :(e.mode==='三班倒'?`<span class="gname t3">三班倒</span>`:'');
           const sTag=SPECIAL_STATUSES.includes(e.status)?`<span class="status-tag">${e.status}·禁夜班</span>`:'';
           const cells=curDates.map(d=>{
             const c=schedule[e.id][d];
@@ -234,7 +235,8 @@
       const certs=SEED.meta.certTypes.map(ct=>{
         const on=e.certs[ct]; return `<span class="cert ${on?'on':''}">${ct}${on?'✓':''}</span>`;
       }).join('');
-      const gTag=e.group?`<span class="gname" style="background:${groupColor(e.group)}">${e.group}</span>`:'';
+      const gTag=e.group?`<span class="gname" style="background:${groupColor(e.group)}">${e.group}</span>`
+                :(e.mode==='三班倒'?`<span class="gname t3">三班倒</span>`:'');
       const sTag=SPECIAL_STATUSES.includes(e.status)?`<span class="status-tag">${e.status}·禁夜班</span>`:'';
       return `<div class="pcard ${e.type==='备班'?'is-reserve':''}">
         <h4>${e.name}<span class="role-tag rt-${roleClass(e.role)}">${e.role}</span>
