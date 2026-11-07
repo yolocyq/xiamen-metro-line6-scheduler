@@ -15,6 +15,21 @@
   const OVERTIME_HOURS = 48;            // 8天内超过即预警（≈6个班）
   const ROLE_ORDER = { '值站': 3, '行值': 2, '站务员': 1, '管理': 0, '其他': 0 };
 
+  // —— 可调整配置（依公司规定后续修改）——
+  const FORCED_REST_MAX_CONSEC = 7;     // 连续出勤超过此天数 → 强制休息标记（意见10，仅做标记防遗忘）
+  const NIGHT_RULES = [                 // 意见8 夜班认定：按班次代号前缀判定（可按实际代号规则调整）
+    { test: /^KB/,  kind: '小夜' },
+    { test: /^KA7|^K7/, kind: '大夜' },
+  ];
+  const SPECIAL_STATUSES = ['孕期', '哺乳期'];   // 意见11：不能上夜班的特殊时期
+
+  function nightKind(code) {
+    if (!code) return null;
+    for (const r of NIGHT_RULES) { if (r.test.test(code)) return r.kind; }
+    return null;
+  }
+  function isSpecialStatus(e) { return e && SPECIAL_STATUSES.includes(e.status); }
+
   function sameRole(a, b) { return a === b; }
   function requiredCerts(role) {
     if (role === '站务员') return ['上岗证'];
@@ -85,6 +100,61 @@
     return overrides && Object.keys(overrides).length > 0;
   }
 
+  // 意见1 换班/顶岗：override {subBy: 顶岗人id}
+  // A 的班次由 B 顶；仅当 B 当天无自身班次且空闲时可用；双向换班=登记两条
+  function applySwaps(state, overrides, schedule, used, warnings, stats, baseSubCode) {
+    const { employees, dates } = state;
+    const dateSet = new Set(dates);
+    Object.keys(overrides).forEach(aid => {
+      Object.keys(overrides[aid] || {}).forEach(d => {
+        const ov = overrides[aid][d];
+        if (!ov || !ov.subBy || !dateSet.has(d)) return;
+        const A = employees.find(e => e.id === aid);
+        const B = employees.find(e => e.id === ov.subBy);
+        if (!A || !B || A.id === B.id) return;
+        const cellA = schedule[A.id] && schedule[A.id][d];
+        const intended = intendedShift(A, d, baseSubCode) || (A.base[d] && A.base[d].code);
+        if (!cellA || !intended) return;
+        if (cellA.swapBy) return;                         // 已被另一次换班覆盖
+        const bc = B.base ? B.base[d] : null;
+        const bBusyOwn = bc && bc.code && !bc.isRest;     // B 当天自身有班
+        const bAbsent = bc && (bc.substitute || bc.leaveType); // B 当天休假/被替
+        if (bBusyOwn || bAbsent || used[d].has(B.id)) {
+          warnings.push({ type: 'swap', level: 'error',
+            message: `换班失败：${A.name}（${d.slice(5)}）→ ${B.name}${bAbsent ? ' 当天休假/被替' : bBusyOwn ? ' 当天自身有班' : ' 已被其他顶替占用'}，请换其他顶岗人` });
+          return;
+        }
+        used[d].add(B.id); stats.substituted++; stats.swaps++;
+        schedule[A.id][d] = Object.assign({}, cellA, {
+          text: `${intended}（换班·${B.name}顶岗）`, swapBy: B.name, sameAsBase: false });
+        schedule[B.id][d] = Object.assign({}, schedule[B.id][d] || restCell(), {
+          text: `${intended}（替${A.name}换班）`, code: intended, isRest: false, isAbsent: false,
+          isSubstitute: true, dispatchedTo: A.sectionName, replace: A.name,
+          leaveType: null, swapFor: A.name, sameAsBase: false });
+        if (isSpecialStatus(B) && nightKind(intended)) {
+          warnings.push({ type: 'night', level: 'warn',
+            message: `${B.name}（${B.status}）被安排夜班 ${intended}（替${A.name}换班），请留意` });
+        }
+      });
+    });
+  }
+
+  // 意见10 强制休息标记：连续出勤超过阈值仅做提醒（防遗忘，标准依公司规定可调）
+  function checkForcedRest(employees, dates, schedule, warnings) {
+    employees.forEach(e => {
+      let run = 0, maxRun = 0;
+      dates.forEach(d => {
+        const c = schedule[e.id][d];
+        if (c && c.code && !c.isRest && !c.isAbsent) { run++; if (run > maxRun) maxRun = run; }
+        else run = 0;
+      });
+      if (maxRun > FORCED_REST_MAX_CONSEC) {
+        warnings.push({ type: 'rest', level: 'warn',
+          message: `${e.sectionName}·${e.post} ${e.name} 连续出勤 ${maxRun} 天（>${FORCED_REST_MAX_CONSEC}），触及强制休息标记（阈值依公司规定可调）` });
+      }
+    });
+  }
+
   // 输出"沿用原表"结果
   function baseOutput(state, sig) {
     const schedule = {};
@@ -107,7 +177,9 @@
     });
     stats.totalShifts = state.employees.reduce(
       (a, e) => a + state.dates.filter(d => schedule[e.id][d].code && !schedule[e.id][d].isRest).length, 0);
-    return { schedule, warnings: [], stats, noChange: true, inputSig: sig,
+    const restWarnings = [];
+    checkForcedRest(state.employees, state.dates, schedule, restWarnings);
+    return { schedule, warnings: dedupe(restWarnings), stats, noChange: true, inputSig: sig,
       note: '无人员/班次变动，已沿用上次排班（原表）。' };
   }
 
@@ -134,7 +206,7 @@
     const schedule = {};
     const used = {};                 // used[date] = Set(已被占用的人)
     const warnings = [];
-    const stats = { totalShifts: 0, perEmpHours: {}, reserveUsed: 0, crossStation: 0, substituted: 0 };
+    const stats = { totalShifts: 0, perEmpHours: {}, reserveUsed: 0, crossStation: 0, substituted: 0, swaps: 0 };
     dates.forEach(d => used[d] = new Set());
 
     // 1) 底板 = 原表（原样复制，包括原表的顶替对）
@@ -153,6 +225,9 @@
         if (c.dispatchedTo) used[d].add(e.id);
       });
     });
+
+    // 1.5) 换班/顶岗登记（意见1）
+    applySwaps(state, overrides, schedule, used, warnings, stats, baseSubCode);
 
     // 2) 找出需要新顶替的空缺：用户新增休假/base 变动，且原表该天此人不空缺
     dates.forEach(d => {
@@ -215,10 +290,14 @@
         const miss = requiredCerts(hole.role).filter(c => !pick.certs[c]);
         if (miss.length) warnings.push({ type:'cert', level:'warn',
           message:`顶替资质缺口：${pick.sectionName}·${pick.post} ${pick.name} 替 ${hole.name} 缺【${miss.join('、')}】` });
+        if (isSpecialStatus(pick) && nightKind(intended)) warnings.push({ type:'night', level:'warn',
+          message:`${pick.name}（${pick.status}）被安排夜班 ${intended}（替${hole.name}），请留意` });
         if (kind==='cross') warnings.push({ type:'crossgap', level:'warn',
           message:`${pick.sectionName}·${pick.post} ${pick.name} 被抽至${hole.sectionName}顶替，${pick.sectionName}当日${pick.post}空缺` });
       });
     });
+
+    checkForcedRest(employees, dates, schedule, warnings);
 
     // 工时统计 + 超限告警
     employees.forEach(e => {
@@ -244,7 +323,7 @@
     const schedule = {};
     const used = {}; dates.forEach(d => used[d] = new Set());
     const warnings = [];
-    const stats = { totalShifts: 0, perEmpHours: {}, reserveUsed: 0, crossStation: 0, substituted: 0 };
+    const stats = { totalShifts: 0, perEmpHours: {}, reserveUsed: 0, crossStation: 0, substituted: 0, swaps: 0 };
 
     // 底板 = 原表
     employees.forEach(e => {
@@ -261,6 +340,9 @@
         if (c.dispatchedTo) used[d].add(e.id);
       });
     });
+
+    // 换班/顶岗登记（意见1）
+    applySwaps(state, overrides, schedule, used, warnings, stats, baseSubCode);
 
     dates.forEach(d => {
       const onLeave = new Set();
@@ -319,10 +401,14 @@
         const miss = requiredCerts(hole.role).filter(c => !pick.certs[c]);
         if (miss.length) warnings.push({ type:'cert', level:'warn',
           message:`顶替资质缺口：${pick.sectionName}·${pick.post} ${pick.name} 替 ${hole.name} 缺【${miss.join('、')}】` });
+        if (isSpecialStatus(pick) && nightKind(intended)) warnings.push({ type:'night', level:'warn',
+          message:`${pick.name}（${pick.status}）被安排夜班 ${intended}（替${hole.name}），请留意` });
         if (kind==='cross') warnings.push({ type:'crossgap', level:'warn',
           message:`${pick.sectionName}·${pick.post} ${pick.name} 被抽至${hole.sectionName}顶替，${pick.sectionName}当日${pick.post}空缺` });
       }
     });
+
+    checkForcedRest(employees, dates, schedule, warnings);
 
     employees.forEach(e => {
       let h = 0;
@@ -381,7 +467,8 @@
     });
   }
 
-  const API = { generate, intendedShift, holeInfo, requiredCerts, HOURS_PER_SHIFT, OVERTIME_HOURS, extendBase, addDaysISO };
+  const API = { generate, intendedShift, holeInfo, requiredCerts, HOURS_PER_SHIFT, OVERTIME_HOURS,
+    FORCED_REST_MAX_CONSEC, nightKind, extendBase, addDaysISO };
   if (typeof module !== 'undefined' && module.exports) module.exports = API;
   global.Line6Engine = API;
 })(typeof window !== 'undefined' ? window : globalThis);

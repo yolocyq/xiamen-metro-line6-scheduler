@@ -9,7 +9,17 @@
 <body>
   <header class="topbar">
     <div class="brand">
-      <span class="logo">6</span>
+      <span class="logo">
+        <svg viewBox="0 0 32 32" width="30" height="30" aria-label="三角梅">
+          <g>
+            <path d="M16 4 C20 8 22 13 20 17 C17 15 13 15 12 17 C10 13 12 8 16 4Z" fill="#d81b7a"/>
+            <path d="M5 12 C10 12 15 14 17 18 C14 19 11 21 10.5 24 C6 22 4 17 5 12Z" fill="#ad1457"/>
+            <path d="M27 12 C22 12 17 14 15 18 C18 19 21 21 21.5 24 C26 22 28 17 27 12Z" fill="#e91e8c"/>
+            <circle cx="16" cy="20" r="3.4" fill="#ffd54a"/>
+            <circle cx="16" cy="20" r="1.4" fill="#f9a825"/>
+          </g>
+        </svg><b>6</b>
+      </span>
       <div>
         <div class="title">厦门地铁 <b>6号线</b> · 智能排班</div>
         <div class="sub" id="periodLabel">排班周期加载中…</div>
@@ -19,7 +29,14 @@
     <div class="actions">
       <button id="btnExtToggleTop" class="btn accent">📅 延续周期</button>
       <button id="btnGenerate" class="btn primary">⚡ 生成 / 确认排班</button>
-      <button id="btnExport" class="btn">⬇ 导出</button>
+      <div class="export-wrap">
+        <button id="btnExport" class="btn">⬇ 导出 ▾</button>
+        <div id="exportMenu" class="export-menu" style="display:none">
+          <button data-exp="shift">📋 排班班表</button>
+          <button data-exp="result">📊 月结果考勤报表</button>
+          <button data-exp="matrix">🗓 月考勤排班报表</button>
+        </div>
+      </div>
       <button id="btnReset" class="btn ghost">↺ 重置示例</button>
     </div>
   </header>
@@ -40,6 +57,15 @@
         <label>车站/分组：
           <select id="sectionFilter"></select>
         </label>
+        <label>在岗状态：
+          <select id="statusFilter">
+            <option value="">全部</option>
+            <option value="onduty">在岗</option>
+            <option value="leave">未在岗-休假</option>
+            <option value="train">未在岗-培训</option>
+            <option value="other">未在岗-其他（借调/跟岗等）</option>
+          </select>
+        </label>
         <label><input type="checkbox" id="onlyChanged" /> 仅看本次变动</label>
         <label>搜索：
           <input type="search" id="schedSearch" placeholder="姓名/工号…" />
@@ -47,7 +73,8 @@
         <button id="btnExtToggle" class="btn sm">📅 延续周期</button>
         <span class="legend">
           <i class="lg normal"></i>正常 <i class="lg rest"></i>休息
-          <i class="lg leave"></i>本人休假 <i class="lg sub"></i>顶替外出 <i class="lg warn"></i>缺口
+          <i class="lg leave"></i>本人休假 <i class="lg sub"></i>顶替外出 <i class="lg swap"></i>换班顶岗
+          <i class="lg warn"></i>缺口 <span class="gd" style="background:#7c3aed"></span>班组色标
         </span>
       </div>
       <div class="ext-bar" id="extBar" style="display:none">
@@ -94,20 +121,28 @@
           </div>
           <div class="form-row">
             <label>类型
-              <select id="chgLeave">
-                <option>年假</option><option>病假</option><option>事假</option>
-                <option>育儿假</option><option>婚假</option><option>产假</option>
-                <option>培训</option><option>其他</option>
-              </select>
+              <select id="chgLeave"></select>
             </label>
           </div>
           <div class="form-row" id="chgDates"></div>
           <button id="btnAddLeave" class="btn primary">＋ 登记变动</button>
         </div>
         <div class="card">
-          <h3>② 已登记变动</h3>
+          <h3>② 登记换班 / 顶岗</h3>
+          <p class="hint" style="margin:0 0 8px">员工私下换班也请在此登记，班表与月考勤报表将如实体现，避免人为修改。</p>
+          <div class="form-row">
+            <label>被顶岗人 <select id="chgSwapPerson"></select></label>
+          </div>
+          <div class="form-row">
+            <label>顶岗人（替TA上班） <select id="chgSwapBy"></select></label>
+          </div>
+          <div class="form-row" id="swapDates"></div>
+          <button id="btnAddSwap" class="btn primary">＋ 登记换班</button>
+        </div>
+        <div class="card">
+          <h3>③ 已登记变动</h3>
           <div id="overrideList" class="override-list"></div>
-          <p class="hint">登记后点击右上角「⚡ 生成 / 确认排班」即可自动顶替。</p>
+          <p class="hint">登记后点击右上角「⚡ 生成 / 确认排班」即可自动顶替。双向换班请登记两条（各选对方为顶岗人）。</p>
         </div>
       </div>
     </section>

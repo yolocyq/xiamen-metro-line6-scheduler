@@ -6,6 +6,17 @@
   const WD = ['日','一','二','三','四','五','六'];
   function wdOf(date){ const d=new Date(date+'T00:00:00'); return WD[d.getDay()]; }
 
+  // ---- 意见5：休假/未在岗类别（可按公司规定继续增补）----
+  const LEAVE_TYPES = ['年休假','病假','事假','婚假','产假','照顾假','计生假','调休假',
+    '工伤假','丧假（含路程假）','独生子女照顾父母假','孕期假','计划生育手术照顾假','育儿假'];
+  const OTHER_TYPES = ['培训','借调','跟岗','其他'];
+  const SPECIAL_STATUSES = ['孕期','哺乳期'];          // 意见11
+  const HOUR_SYSTEMS = ['标准工时制','综合计算工时制','不定时工作制'];  // 意见3
+  const STANDARD_MONTH_HOURS = 167;                    // 月标准工时（可按公司规定调整）
+  const GROUP_COLORS = ['#7c3aed','#d81b7a','#0f766e','#b45309','#1d4ed8','#be123c','#15803d','#6d28d9'];
+  function groupColor(g){ if(!g) return null;
+    let h=0; for(const ch of g) h=(h*31+ch.charCodeAt(0))>>>0; return GROUP_COLORS[h%GROUP_COLORS.length]; }
+
   // ---- 状态 ----
   let employees = clone(SEED.employees);
   let sections = clone(SEED.sections);
@@ -45,7 +56,7 @@
   function byId(id){ return employees.find(e=>e.id===id); }
   function secName(id){ const s=sections.find(s=>s.id===id); return s?s.name:id; }
   function computeSig(){
-    return JSON.stringify([employees.map(e=>[e.id,e.type,e.sectionId]), overrides]);
+    return JSON.stringify([employees.map(e=>[e.id,e.type,e.sectionId,e.role,e.group||'',e.status||'',e.hourSystem||'']), overrides]);
   }
 
   // ---- 初始化 ----
@@ -66,9 +77,18 @@
   function buildChangeForm(){
     const sel=document.getElementById('chgPerson');
     sel.innerHTML=employees.map(e=>`<option value="${e.id}">${e.sectionName} · ${e.name}（${e.post}）</option>`).join('');
-    const dc=document.getElementById('chgDates');
-    dc.className='dates';
+    // 意见5：休假 14 类 + 其他类（培训/借调/跟岗）
+    const lv=document.getElementById('chgLeave');
+    lv.innerHTML='<optgroup label="休假">'+LEAVE_TYPES.map(t=>`<option>${t}</option>`).join('')+'</optgroup>'+
+      '<optgroup label="其他">'+OTHER_TYPES.map(t=>`<option>${t}</option>`).join('')+'</optgroup>';
+    // 意见1：换班/顶岗
+    const sp=document.getElementById('chgSwapPerson'), sb=document.getElementById('chgSwapBy');
+    const opts=employees.map(e=>`<option value="${e.id}">${e.sectionName} · ${e.name}（${e.post}）</option>`).join('');
+    sp.innerHTML=opts; sb.innerHTML=opts;
+    const dc=document.getElementById('chgDates'), sd=document.getElementById('swapDates');
+    dc.className='dates'; sd.className='dates';
     dc.innerHTML=curDates.map(d=>`<label><input type="checkbox" value="${d}">${d.slice(5)}<small>周${wdOf(d)}</small></label>`).join('');
+    sd.innerHTML=curDates.map(d=>`<label><input type="checkbox" value="${d}">${d.slice(5)}<small>周${wdOf(d)}</small></label>`).join('');
   }
 
   // ---- 生成 ----
@@ -109,16 +129,35 @@
     document.getElementById('alertBadge').textContent=warn;
   }
 
-  // ---- 排班总表 ----
+  // ---- 排班表 ----
+  // 意见5：在岗/未在岗分类（休假/培训/其他）
+  function empStatusCat(schedule, e){
+    let cat=null;
+    curDates.forEach(d=>{
+      const c=schedule[e.id][d];
+      const lt=c && c.leaveType;
+      if(!lt) return;
+      if(lt==='培训') cat=cat||'train';
+      else if(LEAVE_TYPES.includes(lt)) cat=cat||'leave';
+      else cat=cat||'other';
+    });
+    return cat; // null=在岗
+  }
   function renderSchedule(schedule){
     const area=document.getElementById('scheduleArea');
     const onlyCh=document.getElementById('onlyChanged').checked;
     const secFilter=document.getElementById('sectionFilter').value;
+    const stFilter=document.getElementById('statusFilter').value;
     const q=(document.getElementById('schedSearch').value||'').trim();
 
     const emps = employees.filter(e=>{
       if(secFilter && e.sectionId!==secFilter) return false;
       if(q && !(e.name.includes(q)||e.workno.includes(q))) return false;
+      if(stFilter){
+        const cat=empStatusCat(schedule,e);
+        if(stFilter==='onduty' && cat) return false;
+        if(stFilter!=='onduty' && cat!==stFilter) return false;
+      }
       return true;
     });
     const bySec={};
@@ -142,13 +181,16 @@
         `</tr></thead><tbody>`+
         rows.map(e=>{
           const rc=roleClass(e.role);
+          // 意见6：班组色标；意见11：孕期/哺乳期标记
+          const gTag=e.group?`<span class="gname" style="background:${groupColor(e.group)}">${e.group}</span>`:'';
+          const sTag=SPECIAL_STATUSES.includes(e.status)?`<span class="status-tag">${e.status}·禁夜班</span>`:'';
           const cells=curDates.map(d=>{
             const c=schedule[e.id][d];
             const cls=cellClass(c)+( (onlyCh && !c.sameAsBase)?' changed':'');
             const mini = c.leaveType?`<span class="mini">${c.leaveType}</span>`:(c.dispatchedTo?`<span class="mini">${c.dispatchedTo}</span>`:'');
             return `<td class="cell ${cls}">${c.text||''}${mini}</td>`;
           }).join('');
-          return `<tr><td class="name">${e.name}<span class="role-tag rt-${rc}">${e.role}</span>
+          return `<tr><td class="name">${e.name}<span class="role-tag rt-${rc}">${e.role}</span>${gTag}${sTag}
               <div class="mini" style="color:#9aa6b2">${e.post}</div></td>${cells}</tr>`;
         }).join('')+
         `</tbody></table></div>`;
@@ -157,6 +199,7 @@
   }
   function cellClass(c){
     if(c.isWarning) return 'warn';
+    if(c.swapBy) return 'swap';
     if(c.isSubstitute) return 'sub';
     if(c.isAbsent) return 'leave';
     if(c.isRest) return 'rest';
@@ -165,6 +208,11 @@
   function roleClass(r){ return r==='站务员'?'站务员':r==='行值'?'行值':r==='值站'?'值站':'管理'; }
 
   // ---- 人员管理 ----
+  function allGroups(){
+    const set=new Set();
+    employees.forEach(e=>{ if(e.group) set.add(e.group); });
+    return [...set];
+  }
   function renderPeople(){
     const area=document.getElementById('peopleArea');
     const t=document.getElementById('peopleType').value;
@@ -176,21 +224,36 @@
       if(q&&!(e.name.includes(q)||e.workno.includes(q)||e.post.includes(q)))return false;
       return true;
     });
+    const groups=allGroups();
+    const groupOpts=g=>`<option value="">未分组</option>`+groups.map(x=>`<option ${x===g?'selected':''}>${x}</option>`).join('')+`<option value="__new__">＋ 新建班组…</option>`;
+    const secOpts=sections.map(s=>`<option value="${s.id}" ${s.id===e.sectionId?'selected':''}>${s.name}</option>`).join('');
+    const roleOpts=['值站','行值','站务员','管理'].map(x=>`<option ${x===e.role?'selected':''}>${x}</option>`).join('');
+    const statusOpts=['']+SPECIAL_STATUSES.map(x=>`<option ${x===e.status?'selected':''}>${x}</option>`).join('');
+    const hourOpts=HOUR_SYSTEMS.map(x=>`<option ${x===(e.hourSystem||'标准工时制')?'selected':''}>${x}</option>`).join('');
     area.innerHTML=list.map(e=>{
       const certs=SEED.meta.certTypes.map(ct=>{
         const on=e.certs[ct]; return `<span class="cert ${on?'on':''}">${ct}${on?'✓':''}</span>`;
       }).join('');
-      const secOpts=sections.map(s=>`<option value="${s.id}" ${s.id===e.sectionId?'selected':''}>${s.name}</option>`).join('');
+      const gTag=e.group?`<span class="gname" style="background:${groupColor(e.group)}">${e.group}</span>`:'';
+      const sTag=SPECIAL_STATUSES.includes(e.status)?`<span class="status-tag">${e.status}·禁夜班</span>`:'';
       return `<div class="pcard ${e.type==='备班'?'is-reserve':''}">
         <h4>${e.name}<span class="role-tag rt-${roleClass(e.role)}">${e.role}</span>
-          ${e.type==='备班'?'<span class="role-tag" style="background:#fff3e0;color:#e65100">备班</span>':''}</h4>
-        <div class="meta">${secName(e.sectionId)} · ${e.post} · 工号 ${e.workno}</div>
+          ${e.type==='备班'?'<span class="role-tag" style="background:#fff3e0;color:#e65100">备班</span>':''}${gTag}${sTag}</h4>
+        <div class="meta">${secName(e.sectionId)} · ${e.post} · 工号 ${e.workno} · ${e.hourSystem||'标准工时制'}</div>
         <div class="certs">${certs}</div>
         <div class="row">
           <button class="toggle ${e.type==='备班'?'reserve':''}" data-act="toggle" data-id="${e.id}">
             ${e.type==='备班'?'恢复正岗':'设为备班'}</button>
-          <select class="sel" data-act="sec" data-id="${e.id}">${secOpts}</select>
           <button class="toggle" data-act="leave" data-id="${e.id}">标记休假</button>
+        </div>
+        <div class="row">
+          <label class="mini-l">岗位<select class="sel" data-act="role" data-id="${e.id}">${roleOpts}</select></label>
+          <label class="mini-l">班组<select class="sel" data-act="group" data-id="${e.id}">${groupOpts(e.group)}</select></label>
+        </div>
+        <div class="row">
+          <label class="mini-l">车站<select class="sel" data-act="sec" data-id="${e.id}">${secOpts}</select></label>
+          <label class="mini-l">特殊时期<select class="sel" data-act="status" data-id="${e.id}">${statusOpts}</select></label>
+          <label class="mini-l">工时制<select class="sel" data-act="hour" data-id="${e.id}">${hourOpts}</select></label>
         </div></div>`;
     }).join('') || '<div class="empty">无匹配人员</div>';
   }
@@ -201,8 +264,11 @@
     if(!result){ area.innerHTML='<div class="empty">尚未生成</div>'; return; }
     const groups=[
       {type:'unstaffed',label:'🚫 排班缺口（无人可顶）',lv:'error'},
+      {type:'swap',label:'🔁 换班冲突（顶岗人不可用）',lv:'error'},
       {type:'cert',label:'📄 资质缺口',lv:'warn'},
       {type:'overtime',label:'⏱ 工时超限',lv:'warn'},
+      {type:'night',label:'🌙 孕期/哺乳期被安排夜班',lv:'warn'},
+      {type:'rest',label:'🛏 强制休息标记（连续出勤超限）',lv:'warn'},
       {type:'crossgap',label:'🔀 跨站抽调缺口',lv:'warn'},
     ];
     let html='';
@@ -227,29 +293,99 @@
     ids.forEach(eid=>{
       const e=byId(eid); if(!e)return;
       Object.keys(overrides[eid]).forEach(d=>{
-        const lv=overrides[eid][d].leave;
-        html+=`<div class="ov-item"><span>${e.sectionName}·${e.name} — ${lv} — ${d.slice(5)}</span>
+        const ov=overrides[eid][d];
+        const desc=ov.subBy ? `换班·${(byId(ov.subBy)||{}).name||'?'}顶岗` : ov.leave;
+        html+=`<div class="ov-item"><span>${e.sectionName}·${e.name} — ${desc} — ${d.slice(5)}</span>
           <span class="x" data-del="${eid}" data-date="${d}">✕</span></div>`;
       });
     });
     box.innerHTML=html;
   }
 
-  // ---- 导出 CSV ----
+  // ---- 导出 CSV（三种报表：意见9）----
   function exportCSV(){
     if(!lastResult){ toast('请先生成排班'); return; }
     const sch=lastResult.schedule;
     const rows=[];
-    rows.push(['分组','姓名','岗位','工号','性质',...curDates.map(d=>d.slice(5)+'周'+wdOf(d))].join(','));
+    rows.push(['分组','班组','姓名','岗位','工号','性质','特殊时期',...curDates.map(d=>d.slice(5)+'周'+wdOf(d))].join(','));
     sections.forEach(sec=>{
       employees.filter(e=>e.sectionId===sec.id).forEach(e=>{
         const cells=curDates.map(d=>csvCell(sch[e.id][d].text));
-        rows.push([sec.name,e.name,e.post,e.workno,e.type,...cells].map(csvCell).join(','));
+        rows.push([sec.name,e.group||'',e.name,e.post,e.workno,e.type,e.status||'',...cells].map(csvCell).join(','));
       });
     });
     const csv='\uFEFF'+rows.join('\r\n');
     download(csv,'6号线排班_'+curDates[0]+'_'+curDates[curDates.length-1]+'.csv');
-    toast('已导出 CSV（可直接用 Excel 打开）');
+    toast('已导出排班班表 CSV（可直接用 Excel 打开）');
+  }
+
+  // 统计每人周期数据（夜班/工时/休假/换班）
+  function periodStats(sch){
+    return employees.map(e=>{
+      let shifts=0,big=0,small=0,swaps=0,run=0,maxRun=0;
+      const leaves={};
+      curDates.forEach(d=>{
+        const c=sch[e.id][d];
+        if(c && c.code && !c.isRest){
+          shifts++;
+          const nk=window.Line6Engine.nightKind(c.code);
+          if(nk==='大夜') big++; else if(nk==='小夜') small++;
+        }
+        if(c && c.swapBy) swaps++;
+        if(c && c.leaveType){ leaves[c.leaveType]=(leaves[c.leaveType]||0)+1; }
+        if(c && c.code && !c.isRest && !c.isAbsent){ run++; if(run>maxRun)maxRun=run; } else run=0;
+      });
+      const hours=shifts*window.Line6Engine.HOURS_PER_SHIFT;
+      const monthHours=Math.round(hours/curDates.length*30*10)/10;
+      const sys=e.hourSystem||'标准工时制';
+      const gap=sys==='不定时工作制'?'—':Math.round((monthHours-STANDARD_MONTH_HOURS)*10)/10;
+      const leavesStr=Object.keys(leaves).length
+        ? Object.keys(leaves).map(k=>k+leaves[k]).join(' ') : '无';
+      return {e,shifts,big,small,swaps,hours,monthHours,sys,gap,leavesStr,maxRun};
+    });
+  }
+
+  // 意见9：月结果考勤报表
+  function exportMonthlyResult(){
+    if(!lastResult){ toast('请先生成排班'); return; }
+    const sch=lastResult.schedule;
+    const stats=periodStats(sch);
+    const rows=[];
+    rows.push(['分组','班组','姓名','岗位','工号','性质','工时制','出勤班数','大夜','小夜','周期出勤工时(h)','折算月工时(h)','月标准工时(h)','超缺工时(h)','连续出勤上限(天)','休假/未在岗明细','换班顶岗(次)'].join(','));
+    sections.forEach(sec=>{
+      employees.filter(e=>e.sectionId===sec.id).forEach(e=>{
+        const st=stats.find(x=>x.e.id===e.id);
+        rows.push([sec.name,e.group||'',e.name,e.post,e.workno,e.type,st.sys,
+          st.shifts,st.big,st.small,st.hours,st.monthHours,
+          st.sys==='不定时工作制'?'—':STANDARD_MONTH_HOURS, st.gap, st.maxRun,
+          st.leavesStr, st.swaps].map(csvCell).join(','));
+      });
+    });
+    const csv='\uFEFF'+rows.join('\r\n');
+    download(csv,'6号线月结果考勤报表_'+curDates[0]+'_'+curDates[curDates.length-1]+'.csv');
+    toast('已导出月结果考勤报表（含工时超缺与夜班认定）');
+  }
+
+  // 意见9：月考勤排班报表（全员×日期 班次矩阵）
+  function exportMonthlyMatrix(){
+    if(!lastResult){ toast('请先生成排班'); return; }
+    const sch=lastResult.schedule;
+    const rows=[];
+    rows.push(['班组','分组','姓名','岗位','工号',...curDates.map(d=>d.slice(5)+'周'+wdOf(d))].join(','));
+    sections.forEach(sec=>{
+      employees.filter(e=>e.sectionId===sec.id).forEach(e=>{
+        const cells=curDates.map(d=>{
+          const c=sch[e.id][d];
+          if(!c) return '休';
+          if(c.isRest && !c.swapBy) return '休';
+          return c.text||c.code||'休';
+        });
+        rows.push([e.group||'',sec.name,e.name,e.post,e.workno,...cells].map(csvCell).join(','));
+      });
+    });
+    const csv='\uFEFF'+rows.join('\r\n');
+    download(csv,'6号线月考勤排班报表_'+curDates[0]+'_'+curDates[curDates.length-1]+'.csv');
+    toast('已导出月考勤排班报表（全员班次矩阵）');
   }
   function csvCell(s){ s=(s==null?'':String(s)); return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s; }
   function download(text,name){
@@ -274,6 +410,19 @@
     document.getElementById('sectionFilter').onchange=()=>renderSchedule(lastResult.schedule);
     document.getElementById('onlyChanged').onchange=()=>renderSchedule(lastResult.schedule);
     document.getElementById('schedSearch').oninput=()=>renderSchedule(lastResult.schedule);
+    document.getElementById('statusFilter').onchange=()=>renderSchedule(lastResult.schedule);
+
+    // 导出菜单（意见9：三种报表）
+    const exBtn=document.getElementById('btnExport'), exMenu=document.getElementById('exportMenu');
+    exBtn.onclick=(ev)=>{ ev.stopPropagation(); exMenu.style.display=exMenu.style.display==='none'?'flex':'none'; };
+    document.addEventListener('click',()=>{ exMenu.style.display='none'; });
+    exMenu.onclick=(ev)=>{
+      const b=ev.target.closest('button[data-exp]'); if(!b)return;
+      exMenu.style.display='none';
+      if(b.dataset.exp==='shift') exportCSV();
+      else if(b.dataset.exp==='result') exportMonthlyResult();
+      else exportMonthlyMatrix();
+    };
 
     // 周期延续
     function resetExtension(){
@@ -317,6 +466,18 @@
       ds.forEach(d=>overrides[eid][d]={leave:lv});
       renderOverrides(); toast(`已登记：${byId(eid).name} ${lv} ×${ds.length}天，点「生成」生效`);
     };
+    // 意见1：换班/顶岗登记
+    document.getElementById('btnAddSwap').onclick=()=>{
+      const aid=document.getElementById('chgSwapPerson').value;
+      const bid=document.getElementById('chgSwapBy').value;
+      if(aid===bid){ toast('被顶岗人与顶岗人不能是同一人'); return; }
+      const ds=[...document.querySelectorAll('#swapDates input:checked')].map(c=>c.value);
+      if(!ds.length){ toast('请至少选择一个日期'); return; }
+      overrides[aid]=overrides[aid]||{};
+      ds.forEach(d=>overrides[aid][d]={subBy:bid});
+      renderOverrides();
+      toast(`已登记换班：${byId(bid).name} 顶 ${byId(aid).name} ×${ds.length}天，点「生成」生效`);
+    };
     document.getElementById('overrideList').onclick=(ev)=>{
       const x=ev.target.closest('.x'); if(!x)return;
       const eid=x.dataset.del, d=x.dataset.date;
@@ -337,9 +498,27 @@
       }
     };
     document.getElementById('peopleArea').onchange=(ev)=>{
-      const s=ev.target.closest('select[data-act="sec"]'); if(!s)return;
-      const e=byId(s.dataset.id); e.sectionId=s.value; structuralChanged=true;
-      renderPeople(); toast(`${e.name} 所属站改为 ${secName(s.value)}`);
+      const s=ev.target.closest('select[data-act]'); if(!s)return;
+      const e=byId(s.dataset.id); if(!e)return;
+      const act=s.dataset.act;
+      if(act==='sec'){ e.sectionId=s.value; structuralChanged=true;
+        renderPeople(); toast(`${e.name} 所属站改为 ${secName(s.value)}`); }
+      else if(act==='role'){ e.role=s.value; structuralChanged=true;   // 意见2：岗位变动入口
+        renderPeople(); renderSchedule(lastResult.schedule);
+        toast(`${e.name} 岗位改为 ${s.value}（建议点「生成」重排）`); }
+      else if(act==='group'){   // 意见7：班组变动入口
+        if(s.value==='__new__'){
+          const g=prompt('输入新班组名称（如：四班1）：');
+          if(!g){ renderPeople(); return; }
+          e.group=g.trim();
+        } else e.group=s.value||'';
+        renderPeople(); renderSchedule(lastResult.schedule);
+        toast(e.group?`${e.name} 班组改为 ${e.group}`:`${e.name} 已设为未分组`);
+      }
+      else if(act==='status'){ e.status=s.value||'';   // 意见11：孕期/哺乳期
+        renderPeople(); toast(s.value?`${e.name} 已标记${s.value}（不宜夜班）`:`${e.name} 已取消特殊时期标记`); }
+      else if(act==='hour'){ e.hourSystem=s.value;     // 意见3：劳动合同工时制
+        renderPeople(); toast(`${e.name} 工时制改为 ${s.value}`); }
     };
   }
   function switchTab(name){
