@@ -226,11 +226,11 @@
     });
     const groups=allGroups();
     const groupOpts=g=>`<option value="">未分组</option>`+groups.map(x=>`<option ${x===g?'selected':''}>${x}</option>`).join('')+`<option value="__new__">＋ 新建班组…</option>`;
-    const secOpts=sections.map(s=>`<option value="${s.id}" ${s.id===e.sectionId?'selected':''}>${s.name}</option>`).join('');
-    const roleOpts=['值站','行值','站务员','管理'].map(x=>`<option ${x===e.role?'selected':''}>${x}</option>`).join('');
-    const statusOpts=['']+SPECIAL_STATUSES.map(x=>`<option ${x===e.status?'selected':''}>${x}</option>`).join('');
-    const hourOpts=HOUR_SYSTEMS.map(x=>`<option ${x===(e.hourSystem||'标准工时制')?'selected':''}>${x}</option>`).join('');
     area.innerHTML=list.map(e=>{
+      const secOpts=sections.map(s=>`<option value="${s.id}" ${s.id===e.sectionId?'selected':''}>${s.name}</option>`).join('');
+      const roleOpts=['值站','行值','站务员','管理'].map(x=>`<option ${x===e.role?'selected':''}>${x}</option>`).join('');
+      const statusOpts=['']+SPECIAL_STATUSES.map(x=>`<option ${x===e.status?'selected':''}>${x}</option>`).join('');
+      const hourOpts=HOUR_SYSTEMS.map(x=>`<option ${x===(e.hourSystem||'标准工时制')?'selected':''}>${x}</option>`).join('');
       const certs=SEED.meta.certTypes.map(ct=>{
         const on=e.certs[ct]; return `<span class="cert ${on?'on':''}">${ct}${on?'✓':''}</span>`;
       }).join('');
