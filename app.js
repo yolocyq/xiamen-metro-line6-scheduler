@@ -12,7 +12,14 @@
   const OTHER_TYPES = ['培训','借调','跟岗','其他'];
   const SPECIAL_STATUSES = ['孕期','哺乳期'];          // 意见11
   const HOUR_SYSTEMS = ['标准工时制','综合计算工时制','不定时工作制'];  // 意见3
-  const STANDARD_MONTH_HOURS = 167;                    // 月标准工时（可按公司规定调整）
+
+  // ===== 2.0意见3：工时计算参数（拿到公司正式文件后，只改这三行即可）=====
+  // 折算月工时 = 周期出勤工时 ÷ 周期天数 × 折算月天数
+  // 周期出勤工时 = 出勤班数 × 每班工时（每班工时在 engine.js 的 HOURS_PER_SHIFT，默认 8）
+  const MONTH_CONVERT_DAYS = 30;      // 折算月天数（自然月平均天数，通常 30 或 30.4）
+  const STANDARD_MONTH_HOURS = 167;   // 月标准工时（法定月平均 20.83 天 × 8h ≈ 166.6，取 167）
+  // 若公司按「月平均计薪天数 21.75 天」核算，把 STANDARD_MONTH_HOURS 改成 174（21.75×8）即可
+  // ====================================================================
   const GROUP_COLORS = ['#7c3aed','#d81b7a','#0f766e','#b45309','#1d4ed8','#be123c','#15803d','#6d28d9'];
   function groupColor(g){ if(!g) return null;
     let h=0; for(const ch of g) h=(h*31+ch.charCodeAt(0))>>>0; return GROUP_COLORS[h%GROUP_COLORS.length]; }
@@ -230,7 +237,9 @@
     area.innerHTML=list.map(e=>{
       const secOpts=sections.map(s=>`<option value="${s.id}" ${s.id===e.sectionId?'selected':''}>${s.name}</option>`).join('');
       const roleOpts=['值站','行值','站务员','管理'].map(x=>`<option ${x===e.role?'selected':''}>${x}</option>`).join('');
-      const statusOpts=['']+SPECIAL_STATUSES.map(x=>`<option ${x===e.status?'selected':''}>${x}</option>`).join('');
+      // 2.0意见1：显式「非特殊时期」选项，可一键清除孕期/哺乳期标记
+      const statusOpts=`<option value="" ${!e.status?'selected':''}>非特殊时期</option>`
+        +SPECIAL_STATUSES.map(x=>`<option ${x===e.status?'selected':''}>${x}</option>`).join('');
       const hourOpts=HOUR_SYSTEMS.map(x=>`<option ${x===(e.hourSystem||'标准工时制')?'selected':''}>${x}</option>`).join('');
       const certs=SEED.meta.certTypes.map(ct=>{
         const on=e.certs[ct]; return `<span class="cert ${on?'on':''}">${ct}${on?'✓':''}</span>`;
@@ -338,7 +347,8 @@
         if(c && c.code && !c.isRest && !c.isAbsent){ run++; if(run>maxRun)maxRun=run; } else run=0;
       });
       const hours=shifts*window.Line6Engine.HOURS_PER_SHIFT;
-      const monthHours=Math.round(hours/curDates.length*30*10)/10;
+      // 2.0意见3：折算月工时 = 周期出勤工时 ÷ 周期天数 × 折算月天数（参数见文件顶部）
+      const monthHours=Math.round(hours/curDates.length*MONTH_CONVERT_DAYS*10)/10;
       const sys=e.hourSystem||'标准工时制';
       const gap=sys==='不定时工作制'?'—':Math.round((monthHours-STANDARD_MONTH_HOURS)*10)/10;
       const leavesStr=Object.keys(leaves).length
@@ -353,14 +363,14 @@
     const sch=lastResult.schedule;
     const stats=periodStats(sch);
     const rows=[];
-    rows.push(['分组','班组','姓名','岗位','工号','性质','工时制','出勤班数','大夜','小夜','周期出勤工时(h)','折算月工时(h)','月标准工时(h)','超缺工时(h)','连续出勤上限(天)','休假/未在岗明细','换班顶岗(次)'].join(','));
+    rows.push(['分组','班组','姓名','岗位','工号','性质','工时制','出勤班数','大夜','小夜','周期出勤工时(h)','折算月工时(h)','月标准工时(h)','超缺工时(h)','连续出勤上限(天)','休假/未在岗明细'].join(','));
     sections.forEach(sec=>{
       employees.filter(e=>e.sectionId===sec.id).forEach(e=>{
         const st=stats.find(x=>x.e.id===e.id);
         rows.push([sec.name,e.group||'',e.name,e.post,e.workno,e.type,st.sys,
           st.shifts,st.big,st.small,st.hours,st.monthHours,
           st.sys==='不定时工作制'?'—':STANDARD_MONTH_HOURS, st.gap, st.maxRun,
-          st.leavesStr, st.swaps].map(csvCell).join(','));
+          st.leavesStr].map(csvCell).join(','));
       });
     });
     const csv='\uFEFF'+rows.join('\r\n');
@@ -521,6 +531,18 @@
         renderPeople(); toast(s.value?`${e.name} 已标记${s.value}（不宜夜班）`:`${e.name} 已取消特殊时期标记`); }
       else if(act==='hour'){ e.hourSystem=s.value;     // 意见3：劳动合同工时制
         renderPeople(); toast(`${e.name} 工时制改为 ${s.value}`); }
+    };
+    // 2.0意见2：按角色一键设置工时制
+    document.getElementById('btnBulkHour').onclick=()=>{
+      const role=document.getElementById('bulkHourRole').value;
+      const sys=document.getElementById('bulkHourSystem').value;
+      const targets=employees.filter(e=>!role||e.role===role);
+      if(!targets.length){ toast('没有匹配的人员'); return; }
+      if(!confirm(`将 ${role||'全部'} 角色共 ${targets.length} 人 的工时制统一设为「${sys}」？`)) return;
+      targets.forEach(e=>e.hourSystem=sys);
+      structuralChanged=true;
+      renderPeople();
+      toast(`已设置 ${role||'全部角色'} ${targets.length} 人为「${sys}」`);
     };
   }
   function switchTab(name){

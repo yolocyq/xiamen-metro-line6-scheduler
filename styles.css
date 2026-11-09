@@ -48,6 +48,11 @@ main{padding:16px 18px}
 .toolbar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
 .toolbar label{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:5px}
 .toolbar select,.toolbar input{padding:6px 8px;border:1px solid #cdd5df;border-radius:7px;font-size:13px}
+/* 2.0意见2：按角色一键设工时制 */
+.bulk-hour{display:flex;gap:6px;align-items:center;margin-left:auto;padding:4px 10px;border-radius:9px;
+  background:#f5f0ff;border:1px dashed #c4b5fd}
+.bulk-hour label{font-size:12px;color:#6d28d9;display:flex;align-items:center;gap:4px}
+.bulk-hour select{padding:4px 6px;border:1px solid #c4b5fd;border-radius:6px;font-size:12px;background:#fff}
 .legend{margin-left:auto;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
 
 /* 周期延续条 */

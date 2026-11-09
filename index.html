@@ -97,6 +97,18 @@
         <label>搜索：
           <input type="search" id="peopleSearch" placeholder="姓名/工号/岗位…" />
         </label>
+        <span class="bulk-hour">
+          <label>一键设工时制：
+            <select id="bulkHourRole">
+              <option value="">全部角色</option>
+              <option>值站</option><option>行值</option><option>站务员</option><option>管理</option>
+            </select>
+          </label>
+          <select id="bulkHourSystem">
+            <option>标准工时制</option><option>综合计算工时制</option><option>不定时工作制</option>
+          </select>
+          <button id="btnBulkHour" class="btn sm primary">应用</button>
+        </span>
       </div>
       <div id="peopleArea" class="people-area"></div>
     </section>
