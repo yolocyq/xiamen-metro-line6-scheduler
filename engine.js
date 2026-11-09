@@ -18,8 +18,8 @@
   // —— 可调整配置（依公司规定后续修改）——
   const FORCED_REST_MAX_CONSEC = 7;     // 连续出勤超过此天数 → 强制休息标记（意见10，仅做标记防遗忘）
   const NIGHT_RULES = [                 // 意见8 夜班认定：按班次代号前缀判定（可按实际代号规则调整）
-    { test: /^KB/,  kind: '小夜' },
-    { test: /^KA7|^K7/, kind: '大夜' },
+    { test: /^KB/,  kind: '大夜' },       // KB 开头 = 大夜
+    { test: /^KA7|^K7/, kind: '小夜' },   // KA7 开头 = 小夜
   ];
   const SPECIAL_STATUSES = ['孕期', '哺乳期'];   // 意见11：不能上夜班的特殊时期
 
