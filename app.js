@@ -66,13 +66,120 @@
     return JSON.stringify([employees.map(e=>[e.id,e.type,e.sectionId,e.role,e.group||'',e.status||'',e.hourSystem||'']), overrides]);
   }
 
+  // ================= 本地持久化（localStorage） =================
+  // 只存"与基础表不同"的人员 + 变动登记 + 延续设置，体积小、恢复快；不上传服务器。
+  const STORE_KEY = 'line6_sched_v3';
+  let saveTimer = null, savedAt = 0;
+  function seedSig(){ return DATES[0]+'~'+DATES[DATES.length-1]+'#'+SEED.employees.length; }
+
+  function collectDirty(){
+    const dirty={};
+    employees.forEach((e,i)=>{
+      if(JSON.stringify(e)!==JSON.stringify(SEED.employees[i])) dirty[e.id]=e;
+    });
+    return dirty;
+  }
+  function snapshot(){
+    return { v:3, sig:seedSig(), at:Date.now(),
+      dirty:collectDirty(),
+      sections: JSON.stringify(sections)===JSON.stringify(SEED.sections) ? null : sections,
+      overrides, structuralChanged,
+      ext:{ active:ext.active, weeks:ext.weeks, keep:ext.keep } };
+  }
+  function saveLocal(){
+    clearTimeout(saveTimer);
+    saveTimer=setTimeout(()=>{
+      try{
+        const snap=snapshot();
+        localStorage.setItem(STORE_KEY, JSON.stringify(snap));
+        savedAt=snap.at; updateSaveChip();
+      }catch(err){
+        console.warn('本地保存失败', err);
+        const el=document.getElementById('saveState');
+        if(el){ el.textContent='⚠ 本地保存失败'; el.className='save-chip err'; }
+      }
+    }, 300);
+  }
+  function clearLocal(){
+    try{ localStorage.removeItem(STORE_KEY); }catch(e){}
+    savedAt=0; updateSaveChip();
+  }
+  function updateSaveChip(){
+    const el=document.getElementById('saveState'); if(!el) return;
+    el.title='改动自动保存在本机浏览器，不上传服务器。换设备请用「导出—备份数据」后导入。';
+    if(!savedAt){ el.textContent='本地未保存'; el.className='save-chip'; return; }
+    const d=new Date(savedAt);
+    const hh=String(d.getHours()).padStart(2,'0'), mm=String(d.getMinutes()).padStart(2,'0');
+    el.textContent='已自动保存 '+hh+':'+mm;
+    el.className='save-chip ok';
+  }
+  function applyPayload(d){
+    if(!d || d.v!==3 || d.sig!==seedSig()) return false;
+    const base=clone(SEED.employees);
+    Object.keys(d.dirty||{}).forEach(id=>{
+      const i=parseInt(String(id).slice(1),10)-1;
+      if(i>=0 && base[i]) base[i]=d.dirty[id];
+    });
+    employees=base;
+    sections=d.sections?clone(d.sections):clone(SEED.sections);
+    Object.keys(overrides).forEach(k=>delete overrides[k]);
+    Object.keys(d.overrides||{}).forEach(k=>{ overrides[k]=d.overrides[k]; });
+    structuralChanged=!!d.structuralChanged;
+    const x=d.ext||{};
+    ext.active=!!x.active; ext.weeks=x.weeks||1; ext.keep=!!x.keep;
+    curDates=ext.active?DATES.concat(computeNewDates(ext.weeks)):DATES.slice();
+    savedAt=d.at||0;
+    return true;
+  }
+  function restoreLocal(){
+    let raw=null;
+    try{ raw=localStorage.getItem(STORE_KEY); }catch(e){ return false; }
+    if(!raw) return false;
+    let d=null; try{ d=JSON.parse(raw); }catch(e){ return false; }
+    if(!applyPayload(d)){ try{ localStorage.removeItem(STORE_KEY); }catch(e){} return false; }
+    return true;
+  }
+  function backupData(){
+    const payload={ v:3, sig:seedSig(), at:Date.now(), employees, sections, overrides,
+      structuralChanged, ext:{ active:ext.active, weeks:ext.weeks, keep:ext.keep } };
+    download(JSON.stringify(payload), '6号线排班_备份_'+DATES[0]+'.json');
+    toast('已导出备份文件（含人员信息与全部变动登记）');
+  }
+  function restoreFromFile(file){
+    const fr=new FileReader();
+    fr.onload=()=>{
+      let d=null; try{ d=JSON.parse(fr.result); }catch(e){ toast('备份文件格式不正确'); return; }
+      if(!d || !Array.isArray(d.employees)){ toast('这不是本系统的备份文件'); return; }
+      if(d.sig && d.sig!==seedSig() && !confirm('备份的基础数据版本与当前不同，仍要导入吗？')) return;
+      employees=clone(d.employees);
+      sections=d.sections?clone(d.sections):clone(SEED.sections);
+      Object.keys(overrides).forEach(k=>delete overrides[k]);
+      Object.keys(d.overrides||{}).forEach(k=>{ overrides[k]=d.overrides[k]; });
+      structuralChanged=!!d.structuralChanged;
+      const x=d.ext||{};
+      ext.active=!!x.active; ext.weeks=x.weeks||1; ext.keep=!!x.keep;
+      curDates=ext.active?DATES.concat(computeNewDates(ext.weeks)):DATES.slice();
+      buildSectionFilter(); buildChangeForm(); updatePeriodLabel();
+      lastResult=null; lastGenSig=null;
+      doGenerate(true); saveLocal();
+      toast(`已从备份恢复：${employees.length} 人，变动登记 ${Object.keys(overrides).length} 人`);
+    };
+    fr.readAsText(file);
+  }
+
   // ---- 初始化 ----
   function init(){
+    const restored=restoreLocal();
     updatePeriodLabel();
     buildSectionFilter();
     buildChangeForm();
     bindEvents();
-    doGenerate(true); // 首次：呈现原表
+    doGenerate(true); // 首次：呈现原表（或已恢复的编辑结果）
+    updateSaveChip();
+    if(restored && savedAt){
+      const d=new Date(savedAt);
+      toast(`已恢复 ${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')} 的编辑记录`);
+    }
   }
 
   function buildSectionFilter(){
@@ -119,6 +226,7 @@
         : `⚡ 已生成：${result.stats.substituted} 处顶替 / ${result.warnings.length} 条告警`);
       switchTab('schedule');
     }
+    saveLocal();
   }
 
   // ---- 顶栏统计 ----
@@ -413,11 +521,13 @@
     document.getElementById('btnGenerate').onclick=()=>doGenerate(false);
     document.getElementById('btnExport').onclick=exportCSV;
     document.getElementById('btnReset').onclick=()=>{
-      if(!confirm('确定重置为示例数据？已登记的变动将清空。'))return;
+      if(!confirm('确定重置为示例数据？已登记的变动与本机保存的编辑记录将一并清空。'))return;
       employees=clone(SEED.employees); sections=clone(SEED.sections);
       for(const k in overrides)delete overrides[k];
       structuralChanged=false; lastResult=null; lastGenSig=null;
-      buildSectionFilter(); buildChangeForm(); doGenerate(true); toast('已重置为示例数据');
+      ext.active=false; ext.weeks=1; ext.keep=false; curDates=DATES.slice();
+      clearLocal();
+      buildSectionFilter(); buildChangeForm(); updatePeriodLabel(); doGenerate(true); toast('已重置为示例数据，本地记录已清空');
     };
     document.getElementById('sectionFilter').onchange=()=>renderSchedule(lastResult.schedule);
     document.getElementById('onlyChanged').onchange=()=>renderSchedule(lastResult.schedule);
@@ -433,7 +543,17 @@
       exMenu.style.display='none';
       if(b.dataset.exp==='shift') exportCSV();
       else if(b.dataset.exp==='result') exportMonthlyResult();
+      else if(b.dataset.exp==='backup') backupData();
       else exportMonthlyMatrix();
+    };
+
+    // 备份恢复（选文件导入）
+    const rf=document.getElementById('restoreFile');
+    document.getElementById('btnRestore').onclick=()=>rf.click();
+    rf.onchange=()=>{
+      const f=rf.files && rf.files[0];
+      if(f) restoreFromFile(f);
+      rf.value='';
     };
 
     // 周期延续
@@ -441,7 +561,7 @@
       ext.active=false; curDates=DATES.slice();
       buildChangeForm(); updatePeriodLabel();
       document.getElementById('extInfo').textContent='';
-      lastResult=null; doGenerate(true);
+      lastResult=null; doGenerate(true); saveLocal();
     }
     function toggleExtension(){
       switchTab('schedule');
@@ -462,6 +582,7 @@
       doGenerate(false);
       document.getElementById('extInfo').textContent=
         `已延续至 ${nd[nd.length-1]}，共 ${curDates.length} 天；${ext.keep?'已复用原周期休假/顶替标注':'仅复用班次旋转（新周期从干净轮班开始）'}`;
+      saveLocal();
     };
     document.getElementById('btnExtReset').onclick=resetExtension;
 
@@ -476,7 +597,7 @@
       if(!ds.length){ toast('请至少选择一个日期'); return; }
       overrides[eid]=overrides[eid]||{};
       ds.forEach(d=>overrides[eid][d]={leave:lv});
-      renderOverrides(); toast(`已登记：${byId(eid).name} ${lv} ×${ds.length}天，点「生成」生效`);
+      renderOverrides(); saveLocal(); toast(`已登记：${byId(eid).name} ${lv} ×${ds.length}天，点「生成」生效`);
     };
     // 意见1：换班/顶岗登记
     document.getElementById('btnAddSwap').onclick=()=>{
@@ -487,14 +608,14 @@
       if(!ds.length){ toast('请至少选择一个日期'); return; }
       overrides[aid]=overrides[aid]||{};
       ds.forEach(d=>overrides[aid][d]={subBy:bid});
-      renderOverrides();
+      renderOverrides(); saveLocal();
       toast(`已登记换班：${byId(bid).name} 顶 ${byId(aid).name} ×${ds.length}天，点「生成」生效`);
     };
     document.getElementById('overrideList').onclick=(ev)=>{
       const x=ev.target.closest('.x'); if(!x)return;
       const eid=x.dataset.del, d=x.dataset.date;
       delete overrides[eid][d]; if(!Object.keys(overrides[eid]).length)delete overrides[eid];
-      renderOverrides(); toast('已移除该变动');
+      renderOverrides(); saveLocal(); toast('已移除该变动');
     };
 
     // 人员卡片操作（事件委托）
@@ -503,7 +624,7 @@
       const id=b.dataset.id, act=b.dataset.act, e=byId(id);
       if(act==='toggle'){
         e.type = e.type==='备班'?'普通':'备班'; structuralChanged=true;
-        renderPeople(); renderTopStats(lastResult); toast(`${e.name} → ${e.type}`);
+        renderPeople(); renderTopStats(lastResult); saveLocal(); toast(`${e.name} → ${e.type}`);
       } else if(act==='leave'){
         document.getElementById('chgPerson').value=id;
         switchTab('changes'); toast('已选中，请在右侧选择休假类型与日期');
@@ -531,6 +652,7 @@
         renderPeople(); toast(s.value?`${e.name} 已标记${s.value}（不宜夜班）`:`${e.name} 已取消特殊时期标记`); }
       else if(act==='hour'){ e.hourSystem=s.value;     // 意见3：劳动合同工时制
         renderPeople(); toast(`${e.name} 工时制改为 ${s.value}`); }
+      saveLocal();
     };
     // 2.0意见2：按角色一键设置工时制
     document.getElementById('btnBulkHour').onclick=()=>{
@@ -541,7 +663,7 @@
       if(!confirm(`将 ${role||'全部'} 角色共 ${targets.length} 人 的工时制统一设为「${sys}」？`)) return;
       targets.forEach(e=>e.hourSystem=sys);
       structuralChanged=true;
-      renderPeople();
+      renderPeople(); saveLocal();
       toast(`已设置 ${role||'全部角色'} ${targets.length} 人为「${sys}」`);
     };
   }
