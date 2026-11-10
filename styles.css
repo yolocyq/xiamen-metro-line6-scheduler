@@ -20,6 +20,9 @@ body{margin:0;font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHe
 .stats{display:flex;gap:10px;margin-left:auto;flex-wrap:wrap}
 .stats .chip{background:rgba(255,255,255,.15);padding:5px 11px;border-radius:20px;font-size:12px;white-space:nowrap}
 .stats .chip b{font-size:15px}
+.save-chip{padding:5px 11px;border-radius:20px;font-size:12px;white-space:nowrap;background:rgba(255,255,255,.12);color:rgba(255,255,255,.8);cursor:default}
+.save-chip.ok{background:rgba(76,175,80,.25);color:#e8f5e9}
+.save-chip.err{background:rgba(198,40,40,.35);color:#ffebee}
 .actions{display:flex;gap:8px;align-items:flex-start}
 .btn{border:0;padding:8px 14px;border-radius:8px;cursor:pointer;font-size:13px;background:#fff;color:var(--blue);font-weight:600}
 .btn.primary{background:#ffd54a;color:#4a148c}
