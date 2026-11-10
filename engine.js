@@ -38,9 +38,24 @@
     return [];
   }
   function hasCerts(emp, reqs) { return reqs.every(c => emp.certs && emp.certs[c]); }
+  // 随机数：按"输入签名"播种，保证同一份数据重复生成结果一致（刷新/重算不会换人）
+  let rnd = Math.random;
+  function hashStr(s) {
+    let h = 2166136261;
+    for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return h >>> 0;
+  }
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
   function shuffle(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
+      const j = Math.floor(rnd() * (i + 1));
       [arr[i], arr[j]] = [arr[j], arr[i]];
     }
     return arr;
@@ -200,6 +215,7 @@
     if (!hasOverrides(overrides) && noChange) return baseOutput(state, inputSig);
     if (!hasOverrides(overrides)) return baseOutput(state, inputSig);
 
+    rnd = mulberry32(hashStr(inputSig));   // 同一份输入 → 同一次随机序列 → 结果可复现
     if (mode === 'reflow') return reflowAll(state, overrides, baseSubCode, inputSig);
 
     // ---- 有改动(precise)：以原表为底板，仅重排"用户实际改动"的空缺 ----
